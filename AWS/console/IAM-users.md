@@ -43,4 +43,7 @@ add these 12 Actions, we resources: specific: Any in this account
 - name **aws-ci-agent**
 - add user to the group **ci-agents**
 
-
+# Create a Access Key
+- CLI
+- tag: **ci-agent**
+- Storage keys on your keychain 
