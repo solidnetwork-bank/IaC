@@ -1,17 +1,26 @@
-# Add IAM permissions
-The IAM user you’re using for static site hosting will need some permissions attached, to access the CloudFront service.
-Here is the list of them:
+# Add IAM User
+
+# create a IAM Policy
+Go to AWS console > IAM > Policies > Create policy
+
+add these 12 Actions, we resources: specific: Any in this account 
+## CloudFront
+### Write
 - CreateDistribution
 - UpdateDistribution
 - DeleteDistribution
-- GetDistribution
-- TagResource
 - CreateOriginAccessControl
 - UpdateOriginAccessControl
 - DeleteOriginAccessControl
-- ListOriginAccessControls
+### Read
+- GetDistribution
 - GetOriginAccessControl
 - GetOriginAccessControlConfig
+### All
+- TagResource
+### List
+- ListOriginAccessControls
+
 
 Go to **AWS console -> IAM**, and add the above-listed policies to the respective IAM user you're using for hosting the site.
 
