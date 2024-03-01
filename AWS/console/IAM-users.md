@@ -1,6 +1,6 @@
 # Add IAM User
 
-# create a IAM Policy
+# create an IAM Policy
 Go to AWS console > IAM > Policies > Create policy
 
 add these 12 Actions, we resources: specific: Any in this account 
@@ -21,7 +21,26 @@ add these 12 Actions, we resources: specific: Any in this account
 ### List
 - ListOriginAccessControls
 
+## S3
+### Write
+- CreateBucket
+- PutObject
 
-Go to **AWS console -> IAM**, and add the above-listed policies to the respective IAM user you're using for hosting the site.
+## CloudFormation 
+### Write
+- CreateStack
+### Read
+- ValidateTemplate
 
-Also, check that the IAM user has permission to access S3 and CloudFormation services.
+- **name:** AWSCLIAgent
+- **Description:** Permission required by CI CD CLI agents
+
+# Create a User Group
+- name **ci-agents**
+- attach policy **AWSCLIAgent**
+
+# Create a User
+- name **aws-ci-agent**
+- add user to the group **ci-agents**
+
+
