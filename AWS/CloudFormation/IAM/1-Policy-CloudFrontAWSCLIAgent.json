@@ -1,0 +1,32 @@
+{
+    "Type": "AWS::IAM::Policy",
+    "Properties": {
+        "PolicyName": "CloudFrontAWSCLIAgent",
+        "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "VisualEditor0",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudfront:CreateOriginAccessControl",
+                        "cloudfront:DeleteOriginAccessControl",
+                        "cloudfront:ListOriginAccessControls",
+                        "cloudfront:GetOriginAccessControlConfig",
+                        "cloudfront:TagResource",
+                        "cloudfront:UpdateOriginAccessControl",
+                        "cloudfront:CreateDistribution",
+                        "cloudfront:GetDistribution",
+                        "cloudfront:GetOriginAccessControl",
+                        "cloudfront:ListDistributions",
+                        "cloudfront:UpdateDistribution",
+                        "cloudfront:DeleteDistribution",
+                        "cloudfront:GetDistributionConfig",
+                        "cloudfront:UntagResource"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        }
+    }
+}
