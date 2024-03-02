@@ -25,12 +25,25 @@ add these 12 Actions, we resources: specific: Any in this account
 ### Write
 - CreateBucket
 - PutObject
+- DeleteObject
+### List
+- ListBucket
+###
+- GetObject
+- GetObjectVersion
 
 ## CloudFormation 
 ### Write
 - CreateStack
+- CreateChangeSet
+- DeleteChangeSet
+- ExecuteChangeSet
 ### Read
 - ValidateTemplate
+- DescribeChangeSet
+### List
+- DescribeStacks
+- ListChangeSets
 
 - **name:** AWSCLIAgent
 - **Description:** Permission required by CI CD CLI agents
