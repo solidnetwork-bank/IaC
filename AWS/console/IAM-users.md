@@ -39,6 +39,7 @@ Go to AWS console > IAM > Policies > Create policy
 ### Read
 - GetObject
 - GetObjectVersion
+- GetBucketPolicy
 ### Permission Management
 - DeleteBucketPolicy
 - ObjectOwnerOverrideToBucketOwner
