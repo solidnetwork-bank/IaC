@@ -1,0 +1,11 @@
+{
+  "Type" : "AWS::IAM::Group",
+  "Properties" : {
+      "GroupName" : "ci-agents",
+      "ManagedPolicyArns" : [ "arn:aws:iam:::policy/CloudFormationAWSCLIAgent", 
+                              "arn:aws:iam:::policy/CloudFrontAWSCLIAgent", 
+                              "arn:aws:iam:::policy/S3AWSCLIAgent" ]
+    }
+}
+
+
