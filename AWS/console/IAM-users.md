@@ -59,6 +59,7 @@ Go to AWS console > IAM > Policies > Create policy
 - DescribeChangeSet
 - DescribeStackEvents
 ### List
+- ListStacks
 - DescribeStacks
 - ListChangeSets
 
