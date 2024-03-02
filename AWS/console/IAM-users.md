@@ -1,13 +1,13 @@
 # Add IAM User
 
-# create an IAM Policy
+# create IAM Policies
 Go to AWS console > IAM > Policies > Create policy
 
-add these 12 Actions, we resources: specific: Any in this account 
+**NOTE**: Be Sure these policies allow the users to delete and list everything created by themself
 
-**NOTE**: Be Sure this user is be allowed to Delete everything that create
+**Description:** Permission required by CI CD CLI agents
 
-## CloudFront
+## CloudFrontAWSCLIAgent
 ### Write
 - CreateDistribution
 - UpdateDistribution
@@ -27,7 +27,7 @@ add these 12 Actions, we resources: specific: Any in this account
 - ListOriginAccessControls
 - ListDistributions
 
-## S3
+## S3AWSCLIAgent
 ### Write
 - CreateBucket
 - DeleteBucket
@@ -44,7 +44,7 @@ add these 12 Actions, we resources: specific: Any in this account
 - ObjectOwnerOverrideToBucketOwner
 - PutBucketPolicy
 
-## CloudFormation 
+## CloudFormationAWSCLIAgent 
 ### Write
 - CreateStack
 - DeleteStack
@@ -61,12 +61,11 @@ add these 12 Actions, we resources: specific: Any in this account
 - DescribeStacks
 - ListChangeSets
 
-- **name:** AWSCLIAgent
-- **Description:** Permission required by CI CD CLI agents
-
 # Create a User Group
 - name **ci-agents**
-- attach policy **AWSCLIAgent**
+- attach policy **CloudFrontAWSCLIAgent**
+- attach policy **S3AWSCLIAgent**
+- attach policy **CloudFormationAWSCLIAgent**
 
 # Create a User
 - name **aws-ci-agent**
@@ -75,4 +74,7 @@ add these 12 Actions, we resources: specific: Any in this account
 # Create a Access Key
 - CLI
 - tag: **ci-agent**
-- Storage keys on your keychain 
+- Storage keys on your keychain
+
+# Run the IAM Policy Simulator
+https://policysim.aws.amazon.com/home/index.jsp
