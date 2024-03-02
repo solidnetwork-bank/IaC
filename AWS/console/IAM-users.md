@@ -4,6 +4,9 @@
 Go to AWS console > IAM > Policies > Create policy
 
 add these 12 Actions, we resources: specific: Any in this account 
+
+**NOTE**: Be Sure this user is be allowed to Delete everything that create
+
 ## CloudFront
 ### Write
 - CreateDistribution
@@ -14,33 +17,46 @@ add these 12 Actions, we resources: specific: Any in this account
 - DeleteOriginAccessControl
 ### Read
 - GetDistribution
+- GetDistributionConfig
 - GetOriginAccessControl
 - GetOriginAccessControlConfig
-### All
+### Tagging 
 - TagResource
+- UntagResource
 ### List
 - ListOriginAccessControls
+- ListDistributions
 
 ## S3
 ### Write
 - CreateBucket
+- DeleteBucket
 - PutObject
 - DeleteObject
 ### List
 - ListBucket
-###
+- ListAllMyBuckets
+### Read
 - GetObject
 - GetObjectVersion
+### Permission Management
+- DeleteBucketPolicy
+- ObjectOwnerOverrideToBucketOwner
+- PutBucketPolicy
 
 ## CloudFormation 
 ### Write
 - CreateStack
+- DeleteStack
+- RollbackStack
+- UpdateStack
 - CreateChangeSet
 - DeleteChangeSet
 - ExecuteChangeSet
 ### Read
 - ValidateTemplate
 - DescribeChangeSet
+- DescribeStackEvents
 ### List
 - DescribeStacks
 - ListChangeSets
