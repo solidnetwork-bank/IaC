@@ -1,0 +1,29 @@
+{
+    "Type": "AWS::IAM::Policy",
+    "Properties": {
+        "PolicyName": "S3AWSCLIAgent",
+        "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:PutObject",
+                        "s3:GetObject",
+                        "s3:ObjectOwnerOverrideToBucketOwner",
+                        "s3:ListAllMyBuckets",
+                        "s3:PutBucketPolicy",
+                        "s3:CreateBucket",
+                        "s3:ListBucket",
+                        "s3:DeleteObject",
+                        "s3:DeleteBucketPolicy",
+                        "s3:DeleteBucket",
+                        "s3:GetBucketPolicy",
+                        "s3:GetObjectVersion"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        }
+    }
+}
