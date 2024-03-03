@@ -1,19 +1,13 @@
 name: 'Deploy to AWS CloudFormation'
 
 on: 
-  # push:
-  #   branches: [ master ]
-  # pull_request:
-  #   branches: [ master ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      region:
-        description: 'AWS Region to deploy to'
-        required: true
-        default: ''
-
 
 jobs:
   # This workflow contains a single job called "deploy"
@@ -32,14 +26,14 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
-          aws-region: ${{ github.event.inputs.region }}
+          aws-region: ${{ vars.REGION }}
 
       # Deploy to AWS CloudFormation
       - name: Deploy to AWS CloudFormation
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: tekloon-test-stack
-          template: test-stack.yaml
+          name: ${{ vars.STACK_NAME }}
+          template: ${{ vars.TEMPLATE_PATH }}
           no-fail-on-empty-changeset: "1"
-          parameter-overrides: "EC2InstanceType=t2.micro"
+          
   
