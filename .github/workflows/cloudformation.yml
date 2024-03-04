@@ -1,11 +1,6 @@
 name: 'cloudformation'
 
 on:
-  push:
-    branches:
-      - deploy
-    paths:
-      - 'AWS/CloudFormation/**'
   workflow_dispatch:
     inputs:
       region:
