@@ -3,7 +3,7 @@
   "Description": "DESCRIPTION",
   "Resources": {
     "RESOURCE_NAME": {
-      RESOURCE-DEFINITION 
+      RESOURCE-DEFINITION
     }
   },
   "Outputs": {
