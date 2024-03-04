@@ -22,7 +22,7 @@ jobs:
 
       # Configure AWS Credential
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
@@ -34,7 +34,6 @@ jobs:
         with:
           name: ${{ vars.STACK_NAME }}
           template: ${{ vars.TEMPLATE_PATH }}
-          no-fail-on-empty-changeset: "1"
-          capabilities: CAPABILITY_NAMED_IAM
+          capabilities: ${{ vars.CAPABILITIES }}
           
   
