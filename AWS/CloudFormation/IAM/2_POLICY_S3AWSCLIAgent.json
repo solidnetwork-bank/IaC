@@ -1,7 +1,12 @@
 {
-    "Type": "AWS::IAM::Policy",
-    "Properties": {
-        "PolicyName": "S3AWSCLIAgent",
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "S3 Permissions required by CI CD CLI agents",
+  "Resources": {
+    "S3AWSCLIAgentPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "Description": "S3 Permissions required by CI CD CLI agents",
+        "ManagedPolicyName": "S3AWSCLIAgent",
         "PolicyDocument": {
             "Version": "2012-10-17",
             "Statement": [
@@ -25,5 +30,15 @@
                 }
             ]
         }
+      }
     }
+  },
+  "Outputs": {
+    "S3AWSCLIAgentPolicyValue": {
+      "Description": "S3 Policy created",
+      "Value": {
+        "Ref": "S3AWSCLIAgentPolicy"
+      }
+    }
+  }
 }
