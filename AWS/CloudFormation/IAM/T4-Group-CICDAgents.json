@@ -1,0 +1,58 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "DESCRIPTION",
+  "Resources": {
+    "RESOURCE_NAME": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+        "GroupName": "CICDAgents",
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:iam::",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":policy/CloudFormationAWSCLIAgent"
+              ]
+            ]
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:iam::",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":policy/CloudFrontAWSCLIAgent"
+              ]
+            ]
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:iam::",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":policy/S3AWSCLIAgent"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "RESOURCE_NAME_Value": {
+      "Description": "RESOURCE FINAL STATE",
+      "Value": {
+        "Ref": "RESOURCE_NAME"
+      }
+    }
+  }
+}
