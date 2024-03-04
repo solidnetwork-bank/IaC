@@ -1,7 +1,0 @@
-{
-  "Type" : "AWS::IAM::User",
-  "Properties" : {
-      "Groups" : [ "ci-agents" ],  
-      "UserName" : "aws-ci-agent"
-    }
-}
