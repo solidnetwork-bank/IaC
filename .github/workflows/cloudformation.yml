@@ -18,7 +18,6 @@ on:
       template:
         description: 'File Path'
         required: true
-        default: 'AWS/CloudFormation/'
 
 jobs:
   # This workflow contains a single job called "deploy"
