@@ -35,6 +35,5 @@ jobs:
           name: ${{ vars.STACK_NAME }}
           template: ${{ vars.TEMPLATE_PATH }}
           no-fail-on-empty-changeset: "1"
-          parameter-overrides: "EC2InstanceType=t2.micro"
           
   
