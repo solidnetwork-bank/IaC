@@ -1,0 +1,9 @@
+{
+  "Type" : "AWS::IAM::Group",
+  "Properties" : {
+      "GroupName" : "ci-agents",
+      "ManagedPolicyArns" : [ { "Fn::Join" : [ "", [ "arn:aws:iam::", { "Ref" : "AWS::AccountId" }, ":policy/CloudFormationAWSCLIAgent" ] ] },
+                              { "Fn::Join" : [ "", [ "arn:aws:iam::", { "Ref" : "AWS::AccountId" }, ":policy/CloudFrontAWSCLIAgent" ] ] },
+                              { "Fn::Join" : [ "", [ "arn:aws:iam::", { "Ref" : "AWS::AccountId" }, ":policy/S3AWSCLIAgent" ] ] }]
+    }
+}
