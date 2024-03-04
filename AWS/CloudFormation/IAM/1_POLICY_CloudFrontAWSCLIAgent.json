@@ -1,31 +1,45 @@
 {
-    "Type": "AWS::IAM::Policy",
-    "Properties": {
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFront Permissions required by CI CD CLI agents",
+  "Resources": {
+    "CloudFrontAWSCLIAgentPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
         "PolicyName": "CloudFrontAWSCLIAgent",
         "PolicyDocument": {
-            "Version": "2012-10-17",
-            "Statement": [
-                {
-                    "Effect": "Allow",
-                    "Action": [
-                        "cloudfront:CreateOriginAccessControl",
-                        "cloudfront:DeleteOriginAccessControl",
-                        "cloudfront:ListOriginAccessControls",
-                        "cloudfront:GetOriginAccessControlConfig",
-                        "cloudfront:TagResource",
-                        "cloudfront:UpdateOriginAccessControl",
-                        "cloudfront:CreateDistribution",
-                        "cloudfront:GetDistribution",
-                        "cloudfront:GetOriginAccessControl",
-                        "cloudfront:ListDistributions",
-                        "cloudfront:UpdateDistribution",
-                        "cloudfront:DeleteDistribution",
-                        "cloudfront:GetDistributionConfig",
-                        "cloudfront:UntagResource"
-                    ],
-                    "Resource": "*"
-                }
-            ]
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "cloudfront:CreateOriginAccessControl",
+                "cloudfront:DeleteOriginAccessControl",
+                "cloudfront:ListOriginAccessControls",
+                "cloudfront:GetOriginAccessControlConfig",
+                "cloudfront:TagResource",
+                "cloudfront:UpdateOriginAccessControl",
+                "cloudfront:CreateDistribution",
+                "cloudfront:GetDistribution",
+                "cloudfront:GetOriginAccessControl",
+                "cloudfront:ListDistributions",
+                "cloudfront:UpdateDistribution",
+                "cloudfront:DeleteDistribution",
+                "cloudfront:GetDistributionConfig",
+                "cloudfront:UntagResource"
+              ],
+              "Resource": "*"
+            }
+          ]
         }
+      }
     }
+  },
+  "Outputs": {
+    "CloudFrontAWSCLIAgentPolicyValue": {
+      "Description": "CloudFront Policy created",
+      "Value": {
+        "Ref": "CloudFrontAWSCLIAgentPolicy"
+      }
+    }
+  }
 }
