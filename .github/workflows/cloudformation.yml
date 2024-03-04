@@ -1,6 +1,11 @@
 name: 'Deploy to AWS CloudFormation'
 
 on:
+  push:
+    branches:
+      - deploy
+    paths:
+      - 'AWS/CloudFormation/**'
   workflow_dispatch:
     inputs:
       region:
