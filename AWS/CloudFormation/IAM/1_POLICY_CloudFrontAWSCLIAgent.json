@@ -3,9 +3,10 @@
   "Description": "CloudFront Permissions required by CI CD CLI agents",
   "Resources": {
     "CloudFrontAWSCLIAgentPolicy": {
-      "Type": "AWS::IAM::Policy",
+      "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
-        "PolicyName": "CloudFrontAWSCLIAgent",
+        "Description": "CloudFront Permissions required by CI CD CLI agents",
+        "ManagedPolicyName": "CloudFrontAWSCLIAgent",
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
