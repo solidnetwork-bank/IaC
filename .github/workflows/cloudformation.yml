@@ -40,5 +40,5 @@ jobs:
         with:
           name: ${{ github.event.inputs.stack }}
           template: ${{ github.event.inputs.template }}
-          capabilities: ${{ vars.CAPABILITIES }}
+          capabilities: ${{ secrets.CAPABILITIES }}
           
