@@ -1,0 +1,49 @@
+name: 'cloudformation'
+
+on:
+  push:
+    branches:
+      - deploy
+    paths:
+      - 'AWS/CloudFormation/**'
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'AWS Region'
+        required: true
+        default: ''
+      stack:
+        description: 'Stack name'
+        required: true
+      template:
+        description: 'File Path'
+        required: true
+        default: 'AWS/CloudFormation/'
+
+jobs:
+  # This workflow contains a single job called "deploy"
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code from main branch
+        uses: actions/checkout@v4
+
+      # Configure AWS Credential
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
+          aws-region: ${{ github.event.inputs.region }}
+
+      # Deploy to AWS CloudFormation
+      - name: Deploy to AWS CloudFormation
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: ${{ github.event.inputs.stack }}
+          template: ${{ github.event.inputs.template }}
+          capabilities: ${{ secrets.CAPABILITIES }}
+          
