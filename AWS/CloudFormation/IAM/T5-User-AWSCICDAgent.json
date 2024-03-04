@@ -1,0 +1,21 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "DESCRIPTION",
+  "Resources": {
+    "RESOURCE_NAME": {
+      "Type" : "AWS::IAM::User",
+      "Properties" : {
+          "Groups" : [ "CICDAgents" ],  
+          "UserName" : "aws-ci-agent"
+        }
+    }
+  },
+  "Outputs": {
+    "RESOURCE_NAME_Value": {
+      "Description": "RESOURCE FINAL STATE",
+      "Value": {
+        "Ref": "RESOURCE_NAME"
+      }
+    }
+  }
+}
