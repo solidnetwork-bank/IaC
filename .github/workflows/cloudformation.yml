@@ -1,8 +1,19 @@
 name: 'Deploy to AWS CloudFormation'
 
-on: 
-  push:
-    branches: [ deploy ]
+on:
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'AWS Region'
+        required: true
+        default: ''
+      stack:
+        description: 'Stack name'
+        required: true
+      template:
+        description: 'File Path'
+        required: true
+        default: 'AWS/CloudFormation/'
 
 jobs:
   # This workflow contains a single job called "deploy"
@@ -21,15 +32,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
-          aws-region: ${{ vars.REGION }}
+          aws-region: ${{ github.event.inputs.region }}
 
       # Deploy to AWS CloudFormation
       - name: Deploy to AWS CloudFormation
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: ${{ vars.STACK_NAME }}
-          template: template.json
+          name: ${{ github.event.inputs.stack }}
+          template: ${{ github.event.inputs.template }}
           capabilities: ${{ vars.CAPABILITIES }}
-          no-fail-on-empty-changeset: "1"
           
-  
