@@ -1,0 +1,21 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "IaC IAM user to interact with AWS: IaCAgent in Group IaCAgents",
+  "Resources": {
+    "IaCAgentUser": {
+      "Type" : "AWS::IAM::User",
+      "Properties" : {
+          "Groups" : [ "IaCAgents" ],  
+          "UserName" : "IaCAgent"
+        }
+    }
+  },
+  "Outputs": {
+    "IaCAgentUserValue": {
+      "Description": "IaCAgent User Created in Group IaCAgents.",
+      "Value": {
+        "Ref": "IaCAgentUser"
+      }
+    }
+  }
+}
