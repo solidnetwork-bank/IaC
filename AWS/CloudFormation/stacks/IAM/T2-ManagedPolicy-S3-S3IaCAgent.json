@@ -1,13 +1,13 @@
 
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "S3 Permissions required by CI CD CLI agents",
+  "Description": "S3 Permissions required by IaC agents: S3IaCAgent.",
   "Resources": {
-    "S3AWSCLIAgentPolicy": {
+    "S3IaCAgentPolicy": {
       "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
-        "Description": "S3 Permissions required by CI CD CLI agents",
-        "ManagedPolicyName": "S3AWSCLIAgent",
+        "Description": "S3 Permissions required by IaC agents: S3IaCAgent.",
+        "ManagedPolicyName": "S3IaCAgent",
         "PolicyDocument": {
             "Version": "2012-10-17",
             "Statement": [
@@ -35,10 +35,10 @@
     }
   },
   "Outputs": {
-    "S3AWSCLIAgentPolicyValue": {
+    "S3IaCAgentPolicyValue": {
       "Description": "S3 Managed Policy created.",
       "Value": {
-        "Ref": "S3AWSCLIAgentPolicy"
+        "Ref": "S3IaCAgentPolicy"
       }
     }
   }
