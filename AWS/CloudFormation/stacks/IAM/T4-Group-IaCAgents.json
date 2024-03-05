@@ -1,11 +1,11 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Group to manage permissions required by CI CD CLI agents",
+  "Description": "Group to manage permissions required by IaC agents: IaCAgents. Managed Policies attached: CloudFormationIaCAgent, CloudFrontIaCAgent, S3IaCAgent.",
   "Resources": {
-    "CICDAgentsGroup": {
+    "IaCAgentsGroup": {
       "Type": "AWS::IAM::Group",
       "Properties": {
-        "GroupName": "CICDAgents",
+        "GroupName": "IaCAgents",
         "ManagedPolicyArns": [
           {
             "Fn::Join": [
@@ -15,7 +15,7 @@
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":policy/CloudFormationAWSCLIAgent"
+                ":policy/CloudFormationIaCAgent"
               ]
             ]
           },
@@ -27,7 +27,7 @@
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":policy/CloudFrontAWSCLIAgent"
+                ":policy/CloudFrontIaCAgent"
               ]
             ]
           },
@@ -39,7 +39,7 @@
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":policy/S3AWSCLIAgent"
+                ":policy/S3IaCAgent"
               ]
             ]
           }
@@ -48,10 +48,10 @@
     }
   },
   "Outputs": {
-    "CICDAgentsGroupValue": {
-      "Description": "CICDAgents Group Created with Managed Policies attached: CloudFormationAWSCLIAgent, CloudFrontAWSCLIAgent, S3AWSCLIAgent.",
+    "IaCAgentsGroupValue": {
+      "Description": "IaCAgents Group Created with Managed Policies attached: CloudFormationIaCAgent, CloudFrontIaCAgent, S3IaCAgent.",
       "Value": {
-        "Ref": "CICDAgentsGroup"
+        "Ref": "IaCAgentsGroup"
       }
     }
   }
