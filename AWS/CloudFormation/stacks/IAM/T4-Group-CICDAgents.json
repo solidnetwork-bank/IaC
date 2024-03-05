@@ -49,7 +49,7 @@
   },
   "Outputs": {
     "CICDAgentsGroupValue": {
-      "Description": "CICDAgents Group Created",
+      "Description": "CICDAgents Group Created with Managed Policies attached: CloudFormationAWSCLIAgent, CloudFrontAWSCLIAgent, S3AWSCLIAgent.",
       "Value": {
         "Ref": "CICDAgentsGroup"
       }
