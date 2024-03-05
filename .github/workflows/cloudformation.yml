@@ -7,11 +7,11 @@ on:
         description: 'AWS Region'
         required: true
         default: ''
-      stack:
-        description: 'Stack name'
-        required: true
       template:
         description: 'File Path'
+        required: true
+      stack:
+        description: 'Stack name'
         required: true
 
 jobs:
