@@ -1,8 +1,8 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "DESCRIPTION",
+  "Description": "Group to manage permissions required by CI CD CLI agents",
   "Resources": {
-    "RESOURCE_NAME": {
+    "CICDAgentsGroup": {
       "Type": "AWS::IAM::Group",
       "Properties": {
         "GroupName": "CICDAgents",
@@ -48,10 +48,10 @@
     }
   },
   "Outputs": {
-    "RESOURCE_NAME_Value": {
-      "Description": "RESOURCE FINAL STATE",
+    "CICDAgentsGroupValue": {
+      "Description": "CICDAgents Group Created with Managed Policies attached: CloudFormationAWSCLIAgent, CloudFrontAWSCLIAgent, S3AWSCLIAgent.",
       "Value": {
-        "Ref": "RESOURCE_NAME"
+        "Ref": "CICDAgentsGroup"
       }
     }
   }
