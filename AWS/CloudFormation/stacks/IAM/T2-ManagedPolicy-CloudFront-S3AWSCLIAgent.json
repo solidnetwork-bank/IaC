@@ -36,7 +36,7 @@
   },
   "Outputs": {
     "S3AWSCLIAgentPolicyValue": {
-      "Description": "S3 Policy created",
+      "Description": "S3 Managed Policy created.",
       "Value": {
         "Ref": "S3AWSCLIAgentPolicy"
       }
