@@ -1,12 +1,12 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "CloudFront Permissions required by CI CD CLI agents",
+  "Description": "CloudFront Permissions required by IaC agents: CloudFrontIaCAgent.",
   "Resources": {
-    "CloudFrontAWSCLIAgentPolicy": {
+    "CloudFrontIaCAgentPolicy": {
       "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
-        "Description": "CloudFront Permissions required by CI CD CLI agents",
-        "ManagedPolicyName": "CloudFrontAWSCLIAgent",
+        "Description": "CloudFront Permissions required by IaC agents: CloudFrontIaCAgent.",
+        "ManagedPolicyName": "CloudFrontIaCAgent",
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
@@ -36,10 +36,10 @@
     }
   },
   "Outputs": {
-    "CloudFrontAWSCLIAgentPolicyValue": {
+    "CloudFrontIaCAgentPolicyValue": {
       "Description": "CloudFront Managed Policy created.",
       "Value": {
-        "Ref": "CloudFrontAWSCLIAgentPolicy"
+        "Ref": "CloudFrontIaCAgentPolicy"
       }
     }
   }
