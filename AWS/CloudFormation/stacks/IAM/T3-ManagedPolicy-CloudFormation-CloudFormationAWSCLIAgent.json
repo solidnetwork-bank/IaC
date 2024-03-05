@@ -36,7 +36,7 @@
   },
   "Outputs": {
     "CloudFormationAWSCLIAgentPolicyValue": {
-      "Description": "CloudFormation Policy created",
+      "Description": "CloudFormation Managed Policy created.",
       "Value": {
         "Ref": "CloudFormationAWSCLIAgentPolicy"
       }
