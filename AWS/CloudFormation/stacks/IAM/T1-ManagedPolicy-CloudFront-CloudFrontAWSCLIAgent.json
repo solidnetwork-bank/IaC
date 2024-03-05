@@ -37,7 +37,7 @@
   },
   "Outputs": {
     "CloudFrontAWSCLIAgentPolicyValue": {
-      "Description": "CloudFront Policy created",
+      "Description": "CloudFront Managed Policy created.",
       "Value": {
         "Ref": "CloudFrontAWSCLIAgentPolicy"
       }
