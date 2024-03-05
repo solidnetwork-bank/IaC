@@ -1,20 +1,20 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "DESCRIPTION",
+  "Description": "CI/CD IAM user to interact with AWS",
   "Resources": {
-    "RESOURCE_NAME": {
+    "AWSCICDAgentUser": {
       "Type" : "AWS::IAM::User",
       "Properties" : {
           "Groups" : [ "CICDAgents" ],  
-          "UserName" : "aws-ci-agent"
+          "UserName" : "AWSCICDAgent"
         }
     }
   },
   "Outputs": {
-    "RESOURCE_NAME_Value": {
-      "Description": "RESOURCE FINAL STATE",
+    "AWSCICDAgentUserValue": {
+      "Description": "AWSCICDAgent User Created in Group CICDAgents.",
       "Value": {
-        "Ref": "RESOURCE_NAME"
+        "Ref": "AWSCICDAgentUser"
       }
     }
   }
