@@ -1,12 +1,12 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "CloudFormation Permissions required by CI CD CLI agents",
+  "Description": "CloudFormation Permissions required by IaC agents: CloudFormationIaCAgent.",
   "Resources": {
-    "CloudFormationAWSCLIAgentPolicy": {
+    "CloudFormationIaCAgentPolicy": {
       "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
-        "Description": "CloudFormation Permissions required by CI CD CLI agents",
-        "ManagedPolicyName": "CloudFormationAWSCLIAgent",
+        "Description": "CloudFormation Permissions required by IaC agents: CloudFormationIaCAgent.",
+        "ManagedPolicyName": "CloudFormationIaCAgent",
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
@@ -35,10 +35,10 @@
     }
   },
   "Outputs": {
-    "CloudFormationAWSCLIAgentPolicyValue": {
+    "CloudFormationIaCAgentPolicyValue": {
       "Description": "CloudFormation Managed Policy created.",
       "Value": {
-        "Ref": "CloudFormationAWSCLIAgentPolicy"
+        "Ref": "CloudFormationIaCAgentPolicy"
       }
     }
   }
