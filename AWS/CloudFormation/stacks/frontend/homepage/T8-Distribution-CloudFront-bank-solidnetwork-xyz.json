@@ -84,7 +84,22 @@
             }
           ],
           "ViewerCertificate": {
-            "AcmCertificateArn": "FALTA",
+            "AcmCertificateArn": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:acm:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":certificate/CERTIFICATE-ID-FROM-INPUT"
+              ]
+            ]
+          },
             "MinimumProtocolVersion": "TLSv1.2_2021",
             "SslSupportMethod": "sni-only"
           }
