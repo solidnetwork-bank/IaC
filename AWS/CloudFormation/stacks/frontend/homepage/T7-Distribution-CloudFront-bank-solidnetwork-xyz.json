@@ -1,0 +1,45 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "DESCRIPTION",
+  "Resources": {
+    "RESOURCE_NAME": {
+      RESOURCE-DEFINITION
+    }
+  },
+  "Outputs": {
+    "RESOURCE_NAME_Value": {
+      "Description": "RESOURCE FINAL STATE",
+      "Value": {
+        "Ref": "RESOURCE_NAME"
+      }
+    }
+  }
+}
+
+- Alternate domain name (CNAME) - optional
+bank.solidnetwork.xyz
+
+- Custom SSL certificate
+bank.solidnetwork.xyz
+
+TLSv1.2_2021
+
+HTTP/2
+
+- description
+S3>bank.solidnetwork.xyz
+
+Origins
+- name and domain
+url static s3
+- type
+S3 static website
+
+Behaviors
+- Redirect HTTP to HTTPS
+- GET, HEAD, OPTIONS
+- Cache policy and origin request policy (recommended) : Caching disabled 
+
+Error pages
+-400, 403, 404, 500, 501, 502
+-Customize error response: Yes > /index.html > response 400, 403, 404, 500, 501, 502
