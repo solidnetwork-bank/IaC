@@ -6,6 +6,13 @@
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "BucketName": "bank.solidnetwork.xyz.test",
+        "OwnershipControls": {
+                       "Rules": [
+                           {
+                               "ObjectOwnership": "ObjectWriter"
+                           }
+                       ]
+                   },
         "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": false,
           "BlockPublicPolicy": false,
