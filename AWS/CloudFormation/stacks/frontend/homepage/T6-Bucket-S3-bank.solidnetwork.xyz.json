@@ -5,7 +5,7 @@
     "BankSolidnetworkXyzBucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
-        "BucketName": "bank.solidnetwork.xyz",
+        "BucketName": "bank.solidnetwork.xyz.test",
         "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": false,
           "BlockPublicPolicy": false,
