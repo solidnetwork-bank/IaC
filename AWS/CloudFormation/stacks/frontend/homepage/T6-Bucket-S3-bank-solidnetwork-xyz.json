@@ -57,12 +57,6 @@
     }
   },
   "Outputs": {
-    "BankSolidnetworkXyzBucketValue": {
-      "Description": "bank.solidnetwork.xyz S3 bucket created.",
-      "Value": {
-        "Ref": "BankSolidnetworkXyzBucket"
-      }
-    },
     "WebsiteURL": {
       "Value": {
         "Fn::GetAtt": [
@@ -71,23 +65,6 @@
         ]
       },
       "Description": "URL for website hosted on S3"
-    },
-    "S3BucketSecureURL": {
-      "Value": {
-        "Fn::Join": [
-          "",
-          [
-            "https://",
-            {
-              "Fn::GetAtt": [
-                "BankSolidnetworkXyzBucket",
-                "DomainName"
-              ]
-            }
-          ]
-        ]
-      },
-      "Description": "Name of S3 bucket to hold website content"
     }
   }
 }
