@@ -1,3 +1,23 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "DESCRIPTION",
+  "Resources": {
+    "RESOURCE_NAME": {
+      RESOURCE-DEFINITION
+    }
+  },
+  "Outputs": {
+    "RESOURCE_NAME_Value": {
+      "Description": "RESOURCE FINAL STATE",
+      "Value": {
+        "Ref": "RESOURCE_NAME"
+      }
+    }
+  }
+}
+
+
+
 AWSTemplateFormatVersion: 2010-09-09
 Description: A template for static hosting using S3 bucket and CloudFront
 
