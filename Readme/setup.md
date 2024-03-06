@@ -2,11 +2,11 @@
 
 # Setting Up CloudFormation IAM User for GitHub Actions
 In CloudFormation Stack console Run the following templates:
-- [AWS/CloudFormation/stacks/IAM/T1-ManagedPolicy-CloudFront-CloudFrontIaCAgent.json](AWS/CloudFormation/stacks/IAM/T1-ManagedPolicy-CloudFront-CloudFrontIaCAgent.json)
-- [AWS/CloudFormation/stacks/IAM/T2-ManagedPolicy-S3-S3IaCAgent.json](AWS/CloudFormation/stacks/IAM/T2-ManagedPolicy-S3-S3IaCAgent.json)
-- [AWS/CloudFormation/stacks/IAM/T3-ManagedPolicy-CloudFormation-CloudFormationIaCAgent.json](AWS/CloudFormation/stacks/IAM/T3-ManagedPolicy-CloudFormation-CloudFormationIaCAgent.json)
-- [AWS/CloudFormation/stacks/IAM/T4-Group-IaCAgents.json](AWS/CloudFormation/stacks/IAM/T4-Group-IaCAgents.json)
-- [AWS/CloudFormation/stacks/IAM/T5-User-IaCAgent.json](AWS/CloudFormation/stacks/IAM/T5-User-IaCAgent.json)
+- [AWS/CloudFormation/stacks/IAM/T1-ManagedPolicy-CloudFront-CloudFrontIaCAgent.json](https://github.com/solidnetwork-bank/IaC/blob/main/AWS/CloudFormation/stacks/IAM/T1-ManagedPolicy-CloudFront-CloudFrontIaCAgent.json)
+- [AWS/CloudFormation/stacks/IAM/T2-ManagedPolicy-S3-S3IaCAgent.json](https://github.com/solidnetwork-bank/IaC/blob/main/AWS/CloudFormation/stacks/IAM/T2-ManagedPolicy-S3-S3IaCAgent.json)
+- [AWS/CloudFormation/stacks/IAM/T3-ManagedPolicy-CloudFormation-CloudFormationIaCAgent.json](https://github.com/solidnetwork-bank/IaC/blob/main/AWS/CloudFormation/stacks/IAM/T3-ManagedPolicy-CloudFormation-CloudFormationIaCAgent.json)
+- [AWS/CloudFormation/stacks/IAM/T4-Group-IaCAgents.json](https://github.com/solidnetwork-bank/IaC/blob/main/AWS/CloudFormation/stacks/IAM/T4-Group-IaCAgents.json)
+- [AWS/CloudFormation/stacks/IAM/T5-User-IaCAgent.json](https://github.com/solidnetwork-bank/IaC/blob/main/AWS/CloudFormation/stacks/IAM/T5-User-IaCAgent.json)
 
 ## Access Key ID and Access Key Secret
 In AWS console > IAM > Users > IaCAgent > Security Credentials > Access keys > Create access Key
