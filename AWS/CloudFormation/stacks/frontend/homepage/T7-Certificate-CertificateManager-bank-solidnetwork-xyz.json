@@ -1,0 +1,26 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Request an AWS Certificate Manager (ACM) certificate for https://bank.solidnetwork.xyz.",
+  "Resources": {
+    "BankSolidnetworkXyzCerticate": {
+      "Type": "AWS::CertificateManager::Certificate",
+      "Properties": {
+        "DomainName": "bank.solidnetwork.xyz",
+        "DomainValidationOptions": [
+          {
+            "DomainName": "bank.solidnetwork.xyz"
+          }
+        ],
+        "ValidationMethod": "DNS"
+      }
+    }
+  },
+  "Outputs": {
+    "BankSolidnetworkXyzCerticateValue": {
+      "Description": "RESOURCE FINAL STATE",
+      "Value": {
+        "Ref": "BankSolidnetworkXyzCerticate"
+      }
+    }
+  }
+}
