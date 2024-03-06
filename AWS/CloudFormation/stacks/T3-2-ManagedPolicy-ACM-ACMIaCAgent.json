@@ -1,35 +1,3 @@
-{
-  "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "ACM Permissions required by IaC agents: ACMIaCAgent.",
-  "Resources": {
-    "ACMIaCAgentPolicy": {
-      "Type": "AWS::IAM::ManagedPolicy",
-      "Properties": {
-        "Description": "ACM Permissions required by IaC agents: ACMIaCAgent.",
-        "ManagedPolicyName": "ACMIaCAgent",
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "acm:RequestCertificate",
-        				"acm:GetCertificate",
-        				"acm:DescribeCertificate"
-              ],
-              "Resource": "*"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "Outputs": {
-    "ACMIaCAgentPolicyValue": {
-      "Description": "ACM Managed Policy created.",
-      "Value": {
-        "Ref": "ACMIaCAgentPolicy"
-      }
-    }
-  }
-}
+template-file-path: template.yml
+parameters: {}
+tags: {}
