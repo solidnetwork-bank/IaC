@@ -17,7 +17,7 @@
   },
   "Outputs": {
     "BankSolidnetworkXyzCerticateValue": {
-      "Description": "RESOURCE FINAL STATE",
+      "Description": "Issued SSL certificate Arn",
       "Value": {
         "Ref": "BankSolidnetworkXyzCerticate"
       }
