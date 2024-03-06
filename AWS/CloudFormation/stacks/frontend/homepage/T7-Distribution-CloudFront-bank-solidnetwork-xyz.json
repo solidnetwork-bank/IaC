@@ -3,82 +3,94 @@
   "Description": "https://bank.solidnetwork.xyz CloudFront distribution.",
   "Resources": {
     "BankSolidnetworkXyzDistribution": {
-        "Type" : "AWS::CloudFront::Distribution",
-        "Properties" : {
-            "DistributionConfig" : {
-              "Aliases" : [ 
-                "bank.solidnetwork.xyz"
-              ],
-  "CacheBehaviors" : [ CacheBehavior, ... ],
-
-              "Comment" : "S3>bank.solidnetwork.xyz",
-
-              "CustomErrorResponses" : [ 
-                {
-                  "ErrorCachingMinTTL" : 10,
-                  "ErrorCode" : 400,
-                  "ResponseCode" : 200,
-                  "ResponsePagePath" : "/index.html"
-                }, {
-                  "ErrorCachingMinTTL" : 10,
-                  "ErrorCode" : 403,
-                  "ResponseCode" : 200,
-                  "ResponsePagePath" : "/index.html"
-                }, {
-                  "ErrorCachingMinTTL" : 10,
-                  "ErrorCode" : 404,
-                  "ResponseCode" : 200,
-                  "ResponsePagePath" : "/index.html"
-                }, {
-                  "ErrorCachingMinTTL" : 10,
-                  "ErrorCode" : 500,
-                  "ResponseCode" : 200,
-                  "ResponsePagePath" : "/index.html"
-                }, {
-                  "ErrorCachingMinTTL" : 10,
-                  "ErrorCode" : 501,
-                  "ResponseCode" : 200,
-                  "ResponsePagePath" : "/index.html"
-                }, {
-                  "ErrorCachingMinTTL" : 10,
-                  "ErrorCode" : 502,
-                  "ResponseCode" : 200,
-                  "ResponsePagePath" : "/index.html"
-                }
-              ],
-
-  "DefaultCacheBehavior" : DefaultCacheBehavior,
-
-              "Enabled" : true,
-              "HttpVersion" : "http2",
-
- 
-  "OriginGroups" : OriginGroups,
-            "Origins" : [
-              {
-          
-            "CustomOriginConfig" : {
-                                    "HTTPPort" : 80,     
-                                    "OriginProtocolPolicy" : "http-only"
-                                  }
-          ,
-            "DomainName" : {
-                  "Fn::GetAtt": [
-                    "BankSolidnetworkXyzBucket",
-                    "WebsiteURL"
-                  ]
-                },
-            "Id" : String
-          }
-          
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
+            "bank.solidnetwork.xyz"
+          ],
+          "Comment": "S3>bank.solidnetwork.xyz",
+          "CustomErrorResponses": [
+            {
+              "ErrorCachingMinTTL": 10,
+              "ErrorCode": 400,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            },
+            {
+              "ErrorCachingMinTTL": 10,
+              "ErrorCode": 403,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            },
+            {
+              "ErrorCachingMinTTL": 10,
+              "ErrorCode": 404,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            },
+            {
+              "ErrorCachingMinTTL": 10,
+              "ErrorCode": 500,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            },
+            {
+              "ErrorCachingMinTTL": 10,
+              "ErrorCode": 501,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            },
+            {
+              "ErrorCachingMinTTL": 10,
+              "ErrorCode": 502,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "AllowedMethods": [
+              "GET",
+              "HEAD",
+              "OPTIONS",
+              "POST"
             ],
-
-
-  "ViewerCertificate" : ViewerCertificate
-}
-
+            "Compress": true,
+            "ForwardedValues": {
+              "Cookies": {
+                "Forward": "none"
+              },
+              "QueryString": false
+            },
+            "TargetOriginId": "origin.bank.solidnetwork.xyz",
+            "ViewerProtocolPolicy": "redirect-to-https"
+          },
+          "DefaultRootObject": "index.html",
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "Origins": [
+            {
+              "CustomOriginConfig": {
+                "HTTPPort": 80,
+                "OriginProtocolPolicy": "http-only"
+              },
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "BankSolidnetworkXyzBucket",
+                  "WebsiteURL"
+                ]
+              },
+              "Id": "origin.bank.solidnetwork.xyz"
+            }
+          ],
+          "ViewerCertificate": {
+            "AcmCertificateArn": "FALTA",
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only"
           }
+        }
       }
+    }
   },
   "Outputs": {
     "BankSolidnetworkXyzDistributionValue": {
@@ -89,21 +101,3 @@
     }
   }
 }
-
-
-
-
-- Custom SSL certificate (request a certificate)
-bank.solidnetwork.xyz
-
-TLSv1.2_2021
-
-
-
-
-Behaviors
-- Redirect HTTP to HTTPS
-- GET, HEAD, OPTIONS
-- Cache policy and origin request policy (recommended) : Caching disabled 
-
-
