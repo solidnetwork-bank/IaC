@@ -7,7 +7,7 @@
     },
     "WebsiteURL":{
       "Type" : "String",
-      "Default" : "T6-Bucket-S3-bank-solidnetwork-xyz-URL"
+      "Default" : "T6-Bucket-S3-bank-solidnetwork-xyz"
     }
   }
   "Resources": {
@@ -85,7 +85,7 @@
               },
               "DomainName": {
                  "Fn::ImportValue": {
-                  "Ref" : "WebsiteURL"
+                  "Fn::Sub": "${WebsiteURL}-URL"
                 }               
               },
               "Id": "origin.bank.solidnetwork.xyz"
