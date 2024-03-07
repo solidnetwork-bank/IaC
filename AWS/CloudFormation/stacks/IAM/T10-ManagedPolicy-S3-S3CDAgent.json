@@ -42,7 +42,9 @@
                             				"s3:PutObjectTagging",
                             				"s3:PutObjectVersionTagging",
                             				"s3:TagResource",
-                            				"s3:UntagResource"                     
+                            				"s3:UntagResource",
+                                    "s3express:CreateSession",
+				                            "s3:ListBucket"
                     ],
                     "Resource": "*"
                 }
