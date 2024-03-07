@@ -4,15 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       region:
-        description: 'AWS Region'
+        description: 'AWS region'
         required: true
         default: ''
       template:
-        description: 'File Path'
+        description: 'File path'
         required: true
       stack:
         description: 'Stack name'
         required: true
+      extra:
+        description: 'Additional information'
+        required: false
+
 
 jobs:
   # This workflow contains a single job called "deploy"
@@ -40,4 +44,6 @@ jobs:
           name: ${{ github.event.inputs.stack }}
           template: ${{ github.event.inputs.template }}
           capabilities: ${{ secrets.CAPABILITIES }}
+          no-fail-on-empty-changeset: "1"
+          parameter-overrides: "ExtraParameter=${{ github.event.inputs.extra }}"
           
