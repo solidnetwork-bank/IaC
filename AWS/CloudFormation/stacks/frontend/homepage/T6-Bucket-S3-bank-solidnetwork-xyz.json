@@ -65,6 +65,11 @@
         ]
       },
       "Description": "URL for website hosted on S3"
-    }
+    },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-URL"
+        }
+      }
   }
 }
