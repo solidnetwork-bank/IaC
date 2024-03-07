@@ -1,6 +1,11 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "https://bank.solidnetwork.xyz CloudFront distribution.",
+  "Parameters" : {
+    "ExtraParameter" : {
+      "Type" : "String"
+    }
+  }
   "Resources": {
     "BankSolidnetworkXyzDistribution": {
       "Type": "AWS::CloudFront::Distribution",
@@ -96,7 +101,7 @@
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":certificate/CERTIFICATE-ID-FROM-INPUT"
+                { "Ref" : "ExtraParameter" }
               ]
             ]
           },
