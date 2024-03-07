@@ -44,5 +44,6 @@ jobs:
           name: ${{ github.event.inputs.stack }}
           template: ${{ github.event.inputs.template }}
           capabilities: ${{ secrets.CAPABILITIES }}
-          parameter-overrides: "extra=${{ github.event.inputs.extra }}"
+          no-fail-on-empty-changeset: "1"
+          parameter-overrides: "Extra=${{ github.event.inputs.extra }}"
           
