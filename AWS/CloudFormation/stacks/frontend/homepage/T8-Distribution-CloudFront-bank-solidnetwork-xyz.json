@@ -4,6 +4,10 @@
   "Parameters" : {
     "ExtraParameter" : {
       "Type" : "String"
+    },
+    "WebsiteURL":{
+      "Type" : "String",
+      "Default" : "T6-Bucket-S3-bank-solidnetwork-xyz-URL"
     }
   }
   "Resources": {
@@ -80,30 +84,16 @@
                 "OriginProtocolPolicy": "http-only"
               },
               "DomainName": {
-                "Fn::GetAtt": [
-                  "BankSolidnetworkXyzBucket",
-                  "WebsiteURL"
-                ]
+                 "Fn::ImportValue": {
+                  "Ref" : "WebsiteURL"
+                }               
               },
               "Id": "origin.bank.solidnetwork.xyz"
             }
           ],
           "ViewerCertificate": {
             "AcmCertificateArn": {
-            "Fn::Join": [
-              "",
-              [
-                "arn:aws:acm:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":",
-                {
-                  "Ref": "AWS::AccountId"
-                },
-                { "Ref" : "ExtraParameter" }
-              ]
-            ]
+             "Ref" : "ExtraParameter"
           },
             "MinimumProtocolVersion": "TLSv1.2_2021",
             "SslSupportMethod": "sni-only"
@@ -114,7 +104,7 @@
   },
   "Outputs": {
     "BankSolidnetworkXyzDistributionValue": {
-      "Description": "RESOURCE FINAL STATE",
+      "Description": "CloudFront distribution created.",
       "Value": {
         "Ref": "BankSolidnetworkXyzDistribution"
       }
