@@ -7,7 +7,7 @@
     },
     "WebsiteURL":{
       "Type" : "String",
-      "Default" : "T6-Bucket-S3-bank-solidnetwork-xyz"
+      "Default" : "T8-Bucket-S3-bank-solidnetwork-xyz"
     }
   },
   "Resources": {
