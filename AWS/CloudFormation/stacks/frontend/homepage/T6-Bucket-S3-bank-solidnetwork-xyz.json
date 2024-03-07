@@ -1,6 +1,11 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "https://bank.solidnetwork.xyz static hosting using S3 bucket.",
+   "Parameters" : {
+    "ExtraParameter" : {
+      "Type" : "String"
+    }
+  }
   "Resources": {
     "BankSolidnetworkXyzBucket": {
       "Type": "AWS::S3::Bucket",
