@@ -1,0 +1,34 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Group to manage permissions required by CD agents: CDAgents. Managed Policies attached: S3CDAgent.",
+  "Resources": {
+    "CDAgentsGroup": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+        "GroupName": "CDAgents",
+        "ManagedPolicyArns": [     
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:iam::",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":policy/S3CDAgent"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "CDAgentsGroupValue": {
+      "Description": "CDAgents Group Created with Managed Policies attached: S3CDAgent.",
+      "Value": {
+        "Ref": "CDAgentsGroup"
+      }
+    }
+  }
+}
