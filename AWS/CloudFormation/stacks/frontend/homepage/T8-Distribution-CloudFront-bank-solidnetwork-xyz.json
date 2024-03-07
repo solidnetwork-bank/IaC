@@ -59,10 +59,9 @@
           ],
           "DefaultCacheBehavior": {
             "AllowedMethods": [
-              "GET",
               "HEAD",
-              "OPTIONS",
-              "POST"
+              "GET",
+              "OPTIONS"
             ],
             "Compress": true,
             "ForwardedValues": {
