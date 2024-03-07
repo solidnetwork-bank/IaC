@@ -9,7 +9,7 @@
       "Type" : "String",
       "Default" : "T6-Bucket-S3-bank-solidnetwork-xyz"
     }
-  }
+  },
   "Resources": {
     "BankSolidnetworkXyzDistribution": {
       "Type": "AWS::CloudFront::Distribution",
