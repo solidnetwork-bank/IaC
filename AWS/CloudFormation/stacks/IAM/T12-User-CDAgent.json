@@ -1,0 +1,21 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CD IAM user to interact with AWS: CDAgent in Group CDAgents",
+  "Resources": {
+    "CDAgentUser": {
+      "Type" : "AWS::IAM::User",
+      "Properties" : {
+          "Groups" : [ "CDAgents" ],  
+          "UserName" : "CDAgent"
+        }
+    }
+  },
+  "Outputs": {
+    "CDAgentUserValue": {
+      "Description": "CDAgent User Created in Group CDAgents.",
+      "Value": {
+        "Ref": "CDAgentUser"
+      }
+    }
+  }
+}
