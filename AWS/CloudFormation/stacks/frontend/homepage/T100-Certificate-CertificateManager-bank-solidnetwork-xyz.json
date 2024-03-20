@@ -9,7 +9,7 @@
         "DomainValidationOptions": [
           {
             "DomainName": "bank.solidnetwork.xyz",
-            "ValidationDomain":"solidnetwork.xyz"
+            "ValidationDomain": "solidnetwork.xyz"
           }
         ],
         "ValidationMethod": "DNS"

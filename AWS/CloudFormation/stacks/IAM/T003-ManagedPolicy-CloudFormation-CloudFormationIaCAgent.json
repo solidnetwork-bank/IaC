@@ -13,19 +13,19 @@
             {
               "Effect": "Allow",
               "Action": [
-                 "cloudformation:ListStacks",
-                 "cloudformation:CreateChangeSet",
-                 "cloudformation:DeleteChangeSet",
-                 "cloudformation:DescribeStacks",
-                 "cloudformation:RollbackStack",
-                 "cloudformation:DescribeStackEvents",
-                 "cloudformation:CreateStack",
-                 "cloudformation:DeleteStack",
-                 "cloudformation:UpdateStack",
-                 "cloudformation:DescribeChangeSet",
-                 "cloudformation:ExecuteChangeSet",
-                 "cloudformation:ValidateTemplate",
-                 "cloudformation:ListChangeSets"
+                "cloudformation:ListStacks",
+                "cloudformation:CreateChangeSet",
+                "cloudformation:DeleteChangeSet",
+                "cloudformation:DescribeStacks",
+                "cloudformation:RollbackStack",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:CreateStack",
+                "cloudformation:DeleteStack",
+                "cloudformation:UpdateStack",
+                "cloudformation:DescribeChangeSet",
+                "cloudformation:ExecuteChangeSet",
+                "cloudformation:ValidateTemplate",
+                "cloudformation:ListChangeSets"
               ],
               "Resource": "*"
             }

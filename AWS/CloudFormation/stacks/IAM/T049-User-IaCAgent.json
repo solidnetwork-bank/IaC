@@ -3,11 +3,13 @@
   "Description": "IaC IAM user to interact with AWS: IaCAgent in Group IaCAgents",
   "Resources": {
     "IaCAgentUser": {
-      "Type" : "AWS::IAM::User",
-      "Properties" : {
-          "Groups" : [ "IaCAgents" ],  
-          "UserName" : "IaCAgent"
-        }
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "Groups": [
+          "IaCAgents"
+        ],
+        "UserName": "IaCAgent"
+      }
     }
   },
   "Outputs": {

@@ -6,7 +6,7 @@
       "Type": "AWS::IAM::Group",
       "Properties": {
         "GroupName": "CDAgents",
-        "ManagedPolicyArns": [     
+        "ManagedPolicyArns": [
           {
             "Fn::Join": [
               "",

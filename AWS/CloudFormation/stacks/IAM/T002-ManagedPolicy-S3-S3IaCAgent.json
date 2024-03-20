@@ -1,4 +1,3 @@
-
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "S3 Permissions required by IaC agents: S3IaCAgent.",
@@ -9,39 +8,39 @@
         "Description": "S3 Permissions required by IaC agents: S3IaCAgent.",
         "ManagedPolicyName": "S3IaCAgent",
         "PolicyDocument": {
-            "Version": "2012-10-17",
-            "Statement": [
-                {
-                    "Effect": "Allow",
-                    "Action": [
-                              "s3:GetReplicationConfiguration",
-                              "s3:GetMetricsConfiguration",
-                              "s3:GetLifecycleConfiguration",
-                              "s3:GetInventoryConfiguration",
-                              "s3:GetIntelligentTieringConfiguration",
-                              "s3:GetEncryptionConfiguration",
-                              "s3:GetBucketWebsite",
-                              "s3:GetBucketVersioning",
-                              "s3:GetBucketPublicAccessBlock",
-                              "s3:GetBucketOwnershipControls",
-                              "s3:GetBucketObjectLockConfiguration",
-                              "s3:GetBucketNotification",
-                              "s3:GetBucketLogging",
-                              "s3:GetBucketCORS",
-                              "s3:GetAnalyticsConfiguration",
-                              "s3:GetAccelerateConfiguration",
-                              "s3:PutBucketPolicy",
-                              "s3:GetBucketPolicy",
-                              "s3:PutBucketWebsite",
-                              "s3:PutBucketPublicAccessBlock",
-                              "s3:CreateBucket",
-                              "s3:DeleteBucket",
-                              "s3:PutBucketAcl",
-                              "s3:PutBucketOwnershipControls"                       
-                    ],
-                    "Resource": "*"
-                }
-            ]
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "s3:GetReplicationConfiguration",
+                "s3:GetMetricsConfiguration",
+                "s3:GetLifecycleConfiguration",
+                "s3:GetInventoryConfiguration",
+                "s3:GetIntelligentTieringConfiguration",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetBucketWebsite",
+                "s3:GetBucketVersioning",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketOwnershipControls",
+                "s3:GetBucketObjectLockConfiguration",
+                "s3:GetBucketNotification",
+                "s3:GetBucketLogging",
+                "s3:GetBucketCORS",
+                "s3:GetAnalyticsConfiguration",
+                "s3:GetAccelerateConfiguration",
+                "s3:PutBucketPolicy",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketWebsite",
+                "s3:PutBucketPublicAccessBlock",
+                "s3:CreateBucket",
+                "s3:DeleteBucket",
+                "s3:PutBucketAcl",
+                "s3:PutBucketOwnershipControls"
+              ],
+              "Resource": "*"
+            }
+          ]
         }
       }
     }

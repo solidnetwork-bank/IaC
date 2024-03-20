@@ -14,8 +14,8 @@
               "Effect": "Allow",
               "Action": [
                 "acm:RequestCertificate",
-        				"acm:GetCertificate",
-        				"acm:DescribeCertificate"
+                "acm:GetCertificate",
+                "acm:DescribeCertificate"
               ],
               "Resource": "*"
             }
