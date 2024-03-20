@@ -69,6 +69,15 @@
       "Value": {
         "Ref": "RestApi"
       }
+    },
+    "RestApiRootResourceIdValue": {
+      "Description": "Root Resource Id",
+      "Value": {
+        "Fn::GetAtt": [
+          "RestApi",
+          "RootResourceId"
+        ]
+      }
     }
   }
 }
