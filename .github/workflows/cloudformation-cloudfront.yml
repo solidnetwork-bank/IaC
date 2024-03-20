@@ -1,22 +1,21 @@
-name: 'cloudformation'
+name: "cloudformation-cloudfront"
 
 on:
   workflow_dispatch:
     inputs:
       region:
-        description: 'AWS region'
+        description: "AWS region"
         required: true
-        default: ''
+        default: ""
       template:
-        description: 'File path'
+        description: "File path"
         required: true
       stack:
-        description: 'Stack name'
+        description: "Stack name"
         required: true
-      extra:
-        description: 'Additional information'
-        required: false
-
+      certificate:
+        description: "ACM Certificate ARN"
+        required: true
 
 jobs:
   # This workflow contains a single job called "deploy"
@@ -45,5 +44,4 @@ jobs:
           template: ${{ github.event.inputs.template }}
           capabilities: ${{ secrets.CAPABILITIES }}
           no-fail-on-empty-changeset: "1"
-          parameter-overrides: "ExtraParameter=${{ github.event.inputs.extra }}"
-          
+          parameter-overrides: "AcmCertificateArnParameter=${{ github.event.inputs.certificate }}"

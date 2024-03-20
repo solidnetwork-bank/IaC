@@ -2,7 +2,7 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "https://bank.solidnetwork.xyz CloudFront distribution.",
   "Parameters" : {
-    "ExtraParameter" : {
+    "AcmCertificateArnParameter" : {
       "Type" : "String"
     },
     "WebsiteURL":{
@@ -92,7 +92,7 @@
           ],
           "ViewerCertificate": {
             "AcmCertificateArn": {
-             "Ref" : "ExtraParameter"
+             "Ref" : "AcmCertificateArnParameter"
           },
             "MinimumProtocolVersion": "TLSv1.2_2021",
             "SslSupportMethod": "sni-only"
