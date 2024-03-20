@@ -10,7 +10,7 @@
         }
     },
     "Resources": {
-        "SignInResource": {
+        "AuthResource": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
                 "RestApiId": {
@@ -19,7 +19,19 @@
                 "ParentId": {
                     "Ref": "parentId"
                 },
-                "PathPart": "/auth/signin"
+                "PathPart": "auth"
+            }
+        },
+        "SignInResource": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ParentId": {
+                    "Ref": "AuthResource"
+                },
+                "PathPart": "signin"
             }
         },
         "SignInPost": {
