@@ -16,6 +16,11 @@ on:
       api:
         description: "Rest Api id"
         required: true
+      parent:
+        description: "Rest Api Root Resource id"
+        required: true
+
+        
 
 jobs:
   # This workflow contains a single job called "deploy"
@@ -44,4 +49,4 @@ jobs:
           template: ${{ github.event.inputs.template }}
           capabilities: ${{ secrets.CAPABILITIES }}
           no-fail-on-empty-changeset: "1"
-          parameter-overrides: "apiId=${{ github.event.inputs.api }}"
+          parameter-overrides: "apiId=${{ github.event.inputs.api }},parentId=${{ github.event.inputs.parent }}"

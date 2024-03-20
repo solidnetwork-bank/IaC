@@ -4,6 +4,9 @@
     "Parameters": {
         "apiId": {
             "Type": "String"
+        },
+        "parentId": {
+            "Type": "String"
         }
     },
     "Resources": {
@@ -14,10 +17,7 @@
                     "Ref": "apiId"
                 },
                 "ParentId": {
-                    "Fn::Ref": [
-                        "apiId",
-                        "RootResourceId"
-                    ]
+                    "Ref": "parentId"
                 },
                 "PathPart": "/auth/signin"
             }
