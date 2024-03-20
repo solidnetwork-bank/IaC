@@ -7,9 +7,6 @@
     },
     "apiDescription": {
       "Type": "String"
-    },
-    "apiBasePath": {
-      "Type": "String"
     }
   },
   "Resources": {
@@ -42,9 +39,6 @@
           "schemes": [
             "https"
           ],
-          "basePath": {
-            "Ref": "apiBasePath"
-          },
           "x-amazon-apigateway-documentation": {
             "version": "1.0.3",
             "documentationParts": [

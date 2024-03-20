@@ -19,9 +19,6 @@ on:
       api_desc:
         description: "Rest Api description"
         required: true
-      api_path:
-        description: "Rest Api base path"
-        required: true
 
 jobs:
   # This workflow contains a single job called "deploy"
@@ -50,4 +47,4 @@ jobs:
           template: ${{ github.event.inputs.template }}
           capabilities: ${{ secrets.CAPABILITIES }}
           no-fail-on-empty-changeset: "1"
-          parameter-overrides: "apiName=${{ github.event.inputs.api_name }},apiDescription=${{ github.event.inputs.api_desc }},apiBasePath=${{ github.event.inputs.api_path }}"
+          parameter-overrides: "apiName=${{ github.event.inputs.api_name }},apiDescription=${{ github.event.inputs.api_desc }}"
