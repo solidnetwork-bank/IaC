@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "https://api.solidnetwork.xyz Api Gateway Rest Api.",
+  "Description": "Api Gateway Rest Api.",
   "Parameters": {
     "apiName": {
       "Type": "String"
@@ -10,7 +10,7 @@
     }
   },
   "Resources": {
-    "BankSolidnetworkXyzRestApi": {
+    "RestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
         "Name": {
@@ -64,10 +64,10 @@
     }
   },
   "Outputs": {
-    "BankSolidnetworkXyzRestApiValue": {
+    "RestApiValue": {
       "Description": "Api Gateway Rest Api Created.",
       "Value": {
-        "Ref": "BankSolidnetworkXyzRestApi"
+        "Ref": "RestApi"
       }
     }
   }
