@@ -1,0 +1,90 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "https://api.solidnetwork.xyz Api Gateway Rest Api.",
+  "Parameters": {
+    "apiName": {
+      "Type": "String"
+    },
+    "apiDescription": {
+      "Type": "String"
+    },
+    "apiBasePath": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "BankSolidnetworkXyzRestApi": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Name": {
+          "Ref": "apiName"
+        },
+        "Description": {
+          "Ref": "apiDescription"
+        },
+        "ApiKeySourceType": "HEADER",
+        "DisableExecuteApiEndpoint": false,
+        "EndpointConfiguration": {
+          "Types": [
+            "REGIONAL"
+          ]
+        },
+        "Body": {
+          "swagger": "2.0",
+          "info": {
+            "description": {
+              "Ref": "apiDescription"
+            },
+            "title": {
+              "Ref": "apiName"
+            }
+          },
+          "schemes": [
+            "https"
+          ],
+          "basePath": {
+            "Ref": "apiBasePath"
+          },
+          "x-amazon-apigateway-documentation": {
+            "version": "1.0.3",
+            "documentationParts": [
+              {
+                "location": {
+                  "type": "API"
+                },
+                "properties": {
+                  "info": {
+                    "description": {
+                      "Ref": "apiDescription"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "Parameters": {
+          "endpointConfigurationTypes": "REGIONAL"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "BankSolidnetworkXyzRestApiValue": {
+      "Description": {
+        "Fn::Join": [
+          "",
+          [
+            {
+              "Ref": "apiName"
+            },
+            " Created."
+          ]
+        ]
+      },
+      "Value": {
+        "Ref": "BankSolidnetworkXyzRestApi"
+      }
+    }
+  }
+}
