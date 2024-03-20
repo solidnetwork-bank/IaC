@@ -1,0 +1,47 @@
+name: "cloudformation-apigateway-method"
+
+on:
+  workflow_dispatch:
+    inputs:
+      region:
+        description: "AWS region"
+        required: true
+        default: ""
+      template:
+        description: "File path"
+        required: true
+      stack:
+        description: "Stack name"
+        required: true
+      api:
+        description: "Rest Api id"
+        required: true
+
+jobs:
+  # This workflow contains a single job called "deploy"
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code from selected branch
+        uses: actions/checkout@v4
+
+      # Configure AWS Credential
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
+          aws-region: ${{ github.event.inputs.region }}
+
+      # Deploy to AWS CloudFormation
+      - name: Deploy to AWS CloudFormation
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: ${{ github.event.inputs.stack }}
+          template: ${{ github.event.inputs.template }}
+          capabilities: ${{ secrets.CAPABILITIES }}
+          no-fail-on-empty-changeset: "1"
+          parameter-overrides: "apiId=${{ github.event.inputs.api }}"

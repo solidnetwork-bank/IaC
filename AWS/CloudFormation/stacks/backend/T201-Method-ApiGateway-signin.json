@@ -1,0 +1,61 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "/auth/signin Api Gateway Rest Api Methods (2): OPTIONS, POST.",
+    "Parameters": {
+        "apiId": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "SignInResource": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ParentId": {
+                    "Fn::GetAtt": [
+                        "apiId",
+                        "RootResourceId"
+                    ]
+                },
+                "PathPart": "/auth/signin"
+            }
+        },
+        "SignInPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ResourceId": {
+                    "Ref": "SignInResource"
+                },
+                "HttpMethod": "POST",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                    "Type": "MOCK",
+                    "IntegrationResponses": [
+                        {
+                            "StatusCode": "200",
+                            "ResponseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "ResponseTemplates": {
+                                "application/json": "algo"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "SignInResourceValue": {
+            "Description": "/auth/signin Api Gateway Rest Api Methods created (2): OPTIONS, POST.",
+            "Value": {
+                "Ref": "SignInResource"
+            }
+        }
+    }
+}
