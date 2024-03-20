@@ -55,7 +55,15 @@
                             }
                         }
                     ]
-                }
+                },
+                "MethodResponses": [
+                    {
+                        "ResponseParameters": {
+                            "method.response.header.Access-Control-Allow-Origin": "'*'"
+                        },
+                        "StatusCode": "200"
+                    }
+                ]
             }
         }
     },
