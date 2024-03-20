@@ -1,13 +1,9 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "https://bank.solidnetwork.xyz CloudFront distribution.",
-  "Parameters" : {
-    "AcmCertificateArnParameter" : {
-      "Type" : "String"
-    },
-    "WebsiteURL":{
-      "Type" : "String",
-      "Default" : "T8-Bucket-S3-bank-solidnetwork-xyz"
+  "Parameters": {
+    "AcmCertificateArnParameter": {
+      "Type": "String"
     }
   },
   "Resources": {
@@ -83,17 +79,15 @@
                 "OriginProtocolPolicy": "http-only"
               },
               "DomainName": {
-                 "Fn::ImportValue": {
-                  "Fn::Sub": "${WebsiteURL}-URL"
-                }               
+                "Fn::ImportValue": "BankSolidnetworkXyzS3StaticEndpoint"
               },
               "Id": "origin.bank.solidnetwork.xyz"
             }
           ],
           "ViewerCertificate": {
             "AcmCertificateArn": {
-             "Ref" : "AcmCertificateArnParameter"
-          },
+              "Ref": "AcmCertificateArnParameter"
+            },
             "MinimumProtocolVersion": "TLSv1.2_2021",
             "SslSupportMethod": "sni-only"
           }

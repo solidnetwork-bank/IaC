@@ -7,12 +7,12 @@
       "Properties": {
         "BucketName": "bank.solidnetwork.xyz",
         "OwnershipControls": {
-                       "Rules": [
-                           {
-                               "ObjectOwnership": "ObjectWriter"
-                           }
-                       ]
-                   },
+          "Rules": [
+            {
+              "ObjectOwnership": "ObjectWriter"
+            }
+          ]
+        },
         "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": false,
           "BlockPublicPolicy": false,
@@ -57,29 +57,27 @@
     }
   },
   "Outputs": {
-  "WebsiteURL": {
-    "Value": {
-      "Fn::Join": [
-        "",
-        {
-          "Fn::Split": [
-            "http://",
-            {
-              "Fn::GetAtt": [
-                "BankSolidnetworkXyzBucket",
-                "WebsiteURL"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "Description": "URL for website hosted on S3",
-    "Export": {
-      "Name": {
-        "Fn::Sub": "${AWS::StackName}-URL"
+    "S3StaticEndpoint": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          {
+            "Fn::Split": [
+              "http://",
+              {
+                "Fn::GetAtt": [
+                  "BankSolidnetworkXyzBucket",
+                  "WebsiteURL"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "Description": "URL for website hosted on S3",
+      "Export": {
+        "Name": "BankSolidnetworkXyzS3StaticEndpoint"
       }
     }
   }
-}
 }
