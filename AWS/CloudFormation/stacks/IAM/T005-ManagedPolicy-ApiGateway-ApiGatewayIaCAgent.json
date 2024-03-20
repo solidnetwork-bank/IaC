@@ -1,0 +1,33 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "ApiGateway Permissions required by IaC agents: ApiGatewayIaCAgent.",
+  "Resources": {
+    "ApiGatewayIaCAgentPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "Description": "ApiGateway Permissions required by IaC agents: ApiGatewayIaCAgent.",
+        "ManagedPolicyName": "ApiGatewayIaCAgent",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "apigateway:*"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ApiGatewayIaCAgentPolicyValue": {
+      "Description": "ApiGateway Managed Policy created.",
+      "Value": {
+        "Ref": "ApiGatewayIaCAgentPolicy"
+      }
+    }
+  }
+}

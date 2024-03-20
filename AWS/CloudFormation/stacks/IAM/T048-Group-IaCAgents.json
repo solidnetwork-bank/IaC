@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Group to manage permissions required by IaC agents: IaCAgents. Managed Policies attached (4): CloudFormationIaCAgent, CloudFrontIaCAgent, S3IaCAgent, ACMIaCAgent.",
+  "Description": "Group to manage permissions required by IaC agents: IaCAgents. Managed Policies attached (5): CloudFormationIaCAgent, CloudFrontIaCAgent, S3IaCAgent, ACMIaCAgent, ApiGatewayIaCAgent.",
   "Resources": {
     "IaCAgentsGroup": {
       "Type": "AWS::IAM::Group",
@@ -54,6 +54,18 @@
                 ":policy/ACMIaCAgent"
               ]
             ]
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:iam::",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":policy/ApiGatewayIaCAgent"
+              ]
+            ]
           }
         ]
       }
@@ -61,7 +73,7 @@
   },
   "Outputs": {
     "IaCAgentsGroupValue": {
-      "Description": "IaCAgents Group Created with Managed Policies attached (4): CloudFormationIaCAgent, CloudFrontIaCAgent, S3IaCAgent, ACMIaCAgent.",
+      "Description": "IaCAgents Group Created with Managed Policies attached (5): CloudFormationIaCAgent, CloudFrontIaCAgent, S3IaCAgent, ACMIaCAgent, ApiGatewayIaCAgent.",
       "Value": {
         "Ref": "IaCAgentsGroup"
       }
