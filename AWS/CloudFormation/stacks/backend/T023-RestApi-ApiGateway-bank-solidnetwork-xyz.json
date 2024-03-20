@@ -71,17 +71,7 @@
   },
   "Outputs": {
     "BankSolidnetworkXyzRestApiValue": {
-      "Description": {
-        "Fn::Join": [
-          "",
-          [
-            {
-              "Ref": "apiName"
-            },
-            " Created."
-          ]
-        ]
-      },
+      "Description": "Api Gateway Rest Api Created.",
       "Value": {
         "Ref": "BankSolidnetworkXyzRestApi"
       }
