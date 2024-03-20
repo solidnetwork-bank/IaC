@@ -16,7 +16,7 @@
                 "ParentId": {
                     "Fn::GetAtt": [
                         {
-                            "Ref": "apiId"
+                            "Fn::Sub": "${apiId}"
                         },
                         "RootResourceId"
                     ]
