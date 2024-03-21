@@ -25,14 +25,26 @@
                 "PathPart": "profile"
             }
         },
-        "ProfileGet": {
+        "ProfileIdResource": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ParentId": {
+                    "Ref": "ProfileResource"
+                },
+                "PathPart": "{profileId}"
+            }
+        },
+        "ProfileIdResourceGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
                 "RestApiId": {
                     "Ref": "apiId"
                 },
                 "ResourceId": {
-                    "Ref": "ProfileResource"
+                    "Ref": "ProfileIdResource"
                 },
                 "HttpMethod": "GET",
                 "AuthorizationType": "NONE",
@@ -67,14 +79,14 @@
                 ]
             }
         },
-        "SignInOptions": {
+        "ProfileIdResourceOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
                 "RestApiId": {
                     "Ref": "apiId"
                 },
                 "ResourceId": {
-                    "Ref": "ProfileResource"
+                    "Ref": "ProfileIdResource"
                 },
                 "HttpMethod": "OPTIONS",
                 "AuthorizationType": "NONE",
@@ -125,10 +137,10 @@
         }
     },
     "Outputs": {
-        "ProfileResourceValue": {
+        "ProfileIdResourceValue": {
             "Description": "/profile/{id} Api Gateway Rest Api Methods created and deployed (2): OPTIONS, GET.",
             "Value": {
-                "Ref": "ProfileResource"
+                "Ref": "ProfileIdResource"
             }
         }
     }
