@@ -123,7 +123,7 @@
             }
         },
         "apiDeployment": {
-            "DependsOn": "SignInOptions",
+            "DependsOn": "ProfileIdResourceOptions",
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
                 "Description": "Api Gateway Rest Api Deployment Stage.",
