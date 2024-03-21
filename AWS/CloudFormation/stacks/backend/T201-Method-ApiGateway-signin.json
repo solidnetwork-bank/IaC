@@ -7,6 +7,9 @@
         },
         "parentId": {
             "Type": "String"
+        },
+        "deploymentStage": {
+            "Type": "String"
         }
     },
     "Resources": {
@@ -134,11 +137,23 @@
                     }
                 ]
             }
+        },
+        "apiDeployment": {
+            "Type": "AWS::ApiGateway::Deployment",
+            "Properties": {
+                "Description": "Api Gateway Rest Api Deployment Stage.",
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "StageName": {
+                    "Ref": "deploymentStage"
+                }
+            }
         }
     },
     "Outputs": {
         "SignInResourceValue": {
-            "Description": "/auth/signin Api Gateway Rest Api Methods created (2): OPTIONS, POST.",
+            "Description": "/auth/signin Api Gateway Rest Api Methods created and deployed (2): OPTIONS, POST.",
             "Value": {
                 "Ref": "SignInResource"
             }
