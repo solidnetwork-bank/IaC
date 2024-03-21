@@ -10,6 +10,22 @@
         }
     },
     "Resources": {
+        "EmptyModel": {
+            "Type": "AWS::ApiGateway::Model",
+            "Properties": {
+                "ContentType": "application/json",
+                "Description": "This is a default empty schema model",
+                "Name": "EmptyModel",
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "Schema": {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "title": "Empty Schema",
+                    "type": "object"
+                }
+            }
+        },
         "AuthResource": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
@@ -47,11 +63,18 @@
                 "AuthorizationType": "NONE",
                 "Integration": {
                     "Type": "MOCK",
+                    "PassthroughBehavior": "WHEN_NO_MATCH",
+                    "RequestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
                     "IntegrationResponses": [
                         {
                             "StatusCode": "200",
                             "ResponseParameters": {
                                 "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "ResponseTemplates": {
+                                "application/json": "{\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Jhbmsuc29saWRuZXR3b3JrLnh5eiIsImlhdCI6MTUxNjIzOTAyMiwidXNlciI6eyJlbWFpbCI6ImV4YW1wbGVAc29saWRuZXR3b3JrLnh5eiIsImF1dGgiOiIwMThlNDg0NC1lOGQ4LTcyNDAtODVhMy0zNGI4NzgzYTY2Y2MiLCJpZCI6ImI3NmMiLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UifX0.6n-EqXDjlo0te5PhTD1U6JqAcKGFaqkU7egj-kwG5X4\"}"
                             }
                         }
                     ]
@@ -61,7 +84,10 @@
                         "ResponseParameters": {
                             "method.response.header.Access-Control-Allow-Origin": "'*'"
                         },
-                        "StatusCode": "200"
+                        "StatusCode": "200",
+                        "ResponseModels": {
+                            "application/json": "EmptyModel"
+                        }
                     }
                 ]
             }
