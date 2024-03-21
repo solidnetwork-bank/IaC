@@ -139,6 +139,7 @@
             }
         },
         "apiDeployment": {
+            "DependsOn": "SignInOptions",
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
                 "Description": "Api Gateway Rest Api Deployment Stage.",
