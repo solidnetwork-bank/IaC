@@ -13,22 +13,6 @@
         }
     },
     "Resources": {
-        "EmptyModel": {
-            "Type": "AWS::ApiGateway::Model",
-            "Properties": {
-                "ContentType": "application/json",
-                "Description": "This is a default empty schema model",
-                "Name": "EmptyModel",
-                "RestApiId": {
-                    "Ref": "apiId"
-                },
-                "Schema": {
-                    "$schema": "http://json-schema.org/draft-04/schema#",
-                    "title": "Empty Schema",
-                    "type": "object"
-                }
-            }
-        },
         "AuthResource": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {

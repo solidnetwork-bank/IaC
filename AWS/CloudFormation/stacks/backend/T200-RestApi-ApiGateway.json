@@ -61,6 +61,22 @@
           "endpointConfigurationTypes": "REGIONAL"
         }
       }
+    },
+    "EmptyModel": {
+      "Type": "AWS::ApiGateway::Model",
+      "Properties": {
+        "ContentType": "application/json",
+        "Description": "This is a default empty schema model",
+        "Name": "EmptyModel",
+        "RestApiId": {
+          "Ref": "RestApi"
+        },
+        "Schema": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "title": "Empty Schema",
+          "type": "object"
+        }
+      }
     }
   },
   "Outputs": {
