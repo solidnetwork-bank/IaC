@@ -1,0 +1,135 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "/replace, Card Rest Api Root Resource Api Gateway Rest Api Methods (2): OPTIONS, POST.",
+    "Parameters": {
+        "apiId": {
+            "Type": "String"
+        },
+        "parentId": {
+            "Type": "String"
+        },
+        "deploymentStage": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "ReplaceResource": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ParentId": {
+                    "Ref": "parentId"
+                },
+                "PathPart": "replace"
+            }
+        },
+        "ReplacePost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ResourceId": {
+                    "Ref": "ReplaceResource"
+                },
+                "HttpMethod": "POST",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                    "Type": "MOCK",
+                    "PassthroughBehavior": "WHEN_NO_MATCH",
+                    "RequestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "IntegrationResponses": [
+                        {
+                            "StatusCode": "200",
+                            "ResponseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "ResponseTemplates": {
+                                "application/json": "{   \"message\":\"Credit Card replacement successfully requested.\" }"
+                            }
+                        }
+                    ]
+                },
+                "MethodResponses": [
+                    {
+                        "ResponseParameters": {
+                            "method.response.header.Access-Control-Allow-Origin": "'*'"
+                        },
+                        "StatusCode": "200",
+                        "ResponseModels": {
+                            "application/json": "EmptyModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "ReplaceOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ResourceId": {
+                    "Ref": "ReplaceResource"
+                },
+                "HttpMethod": "OPTIONS",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                    "Type": "MOCK",
+                    "PassthroughBehavior": "WHEN_NO_MATCH",
+                    "RequestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "IntegrationResponses": [
+                        {
+                            "StatusCode": "200",
+                            "ResponseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    ]
+                },
+                "MethodResponses": [
+                    {
+                        "ResponseParameters": {
+                            "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                            "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                            "method.response.header.Access-Control-Allow-Origin": "'*'"
+                        },
+                        "StatusCode": "200",
+                        "ResponseModels": {
+                            "application/json": "EmptyModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "apiDeployment": {
+            "DependsOn": "ReplaceOptions",
+            "Type": "AWS::ApiGateway::Deployment",
+            "Properties": {
+                "Description": "Api Gateway Rest Api Deployment Stage.",
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "StageName": {
+                    "Ref": "deploymentStage"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "ReplaceResourceValue": {
+            "Description": "/replace, Card Rest Api Root Resource Api Gateway Rest Api Methods (2): OPTIONS, POST.",
+            "Value": {
+                "Ref": "ReplaceResource"
+            }
+        }
+    }
+}
