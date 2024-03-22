@@ -1,0 +1,123 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "/detail, Card Rest Api Root Resource Api Gateway Rest Api Methods (2): OPTIONS, POST.",
+    "Parameters": {
+        "apiId": {
+            "Type": "String"
+        },
+        "parentId": {
+            "Type": "String"
+        },
+        "deploymentStage": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "DetailPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ResourceId": {
+                    "Ref": "parentId"
+                },
+                "HttpMethod": "POST",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                    "Type": "MOCK",
+                    "PassthroughBehavior": "WHEN_NO_MATCH",
+                    "RequestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "IntegrationResponses": [
+                        {
+                            "StatusCode": "200",
+                            "ResponseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "ResponseTemplates": {
+                                "application/json": "{   \"number\": \"1111 2222 3333 4444\",   \"expiration\": \"01/30\",   \"holder\": \"Mary Jane Doe\",   \"cvv\": 123 }"
+                            }
+                        }
+                    ]
+                },
+                "MethodResponses": [
+                    {
+                        "ResponseParameters": {
+                            "method.response.header.Access-Control-Allow-Origin": "'*'"
+                        },
+                        "StatusCode": "200",
+                        "ResponseModels": {
+                            "application/json": "EmptyModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "DetailOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ResourceId": {
+                    "Ref": "parentId"
+                },
+                "HttpMethod": "OPTIONS",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                    "Type": "MOCK",
+                    "PassthroughBehavior": "WHEN_NO_MATCH",
+                    "RequestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "IntegrationResponses": [
+                        {
+                            "StatusCode": "200",
+                            "ResponseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    ]
+                },
+                "MethodResponses": [
+                    {
+                        "ResponseParameters": {
+                            "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                            "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                            "method.response.header.Access-Control-Allow-Origin": "'*'"
+                        },
+                        "StatusCode": "200",
+                        "ResponseModels": {
+                            "application/json": "EmptyModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "apiDeployment": {
+            "DependsOn": "DetailOptions",
+            "Type": "AWS::ApiGateway::Deployment",
+            "Properties": {
+                "Description": "Api Gateway Rest Api Deployment Stage.",
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "StageName": {
+                    "Ref": "deploymentStage"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "DetailPostValue": {
+            "Description": "/detail, Card Rest Api Root Resource Api Gateway Rest Api Methods (2): OPTIONS, POST.",
+            "Value": {
+                "Ref": "DetailPost"
+            }
+        }
+    }
+}
