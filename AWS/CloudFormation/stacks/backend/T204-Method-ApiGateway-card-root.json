@@ -1,0 +1,80 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "GENERAL METHOD",
+    "Parameters": {
+        "apiId": {
+            "Type": "String"
+        },
+        "parentId": {
+            "Type": "String"
+        },
+        "deploymentStage": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "ListCardPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ResourceId": {
+                    "Ref": "parentId"
+                },
+                "HttpMethod": "POST",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                    "Type": "MOCK",
+                    "PassthroughBehavior": "WHEN_NO_MATCH",
+                    "RequestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "IntegrationResponses": [
+                        {
+                            "StatusCode": "200",
+                            "ResponseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "ResponseTemplates": {
+                                "application/json": "{\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Jhbmsuc29saWRuZXR3b3JrLnh5eiIsImlhdCI6MTUxNjIzOTAyMiwidXNlciI6eyJlbWFpbCI6ImV4YW1wbGVAc29saWRuZXR3b3JrLnh5eiIsImF1dGgiOiIwMThlNDg0NC1lOGQ4LTcyNDAtODVhMy0zNGI4NzgzYTY2Y2MiLCJpZCI6ImI3NmMiLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UifX0.6n-EqXDjlo0te5PhTD1U6JqAcKGFaqkU7egj-kwG5X4\"}"
+                            }
+                        }
+                    ]
+                },
+                "MethodResponses": [
+                    {
+                        "ResponseParameters": {
+                            "method.response.header.Access-Control-Allow-Origin": "'*'"
+                        },
+                        "StatusCode": "200",
+                        "ResponseModels": {
+                            "application/json": "EmptyModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "apiDeployment": {
+            "DependsOn": "ListCardPost",
+            "Type": "AWS::ApiGateway::Deployment",
+            "Properties": {
+                "Description": "Api Gateway Rest Api Deployment Stage.",
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "StageName": {
+                    "Ref": "deploymentStage"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "ListCardPostValue": {
+            "Description": "GENERAL.",
+            "Value": {
+                "Ref": "ListCardPost"
+            }
+        }
+    }
+}
