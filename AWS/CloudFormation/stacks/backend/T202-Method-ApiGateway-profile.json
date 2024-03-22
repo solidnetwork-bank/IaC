@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "/profile/{id} Api Gateway Rest Api Methods (2): OPTIONS, GET.",
+    "Description": "/profile Api Gateway Rest Api Methods (2): OPTIONS, POST.",
     "Parameters": {
         "apiId": {
             "Type": "String"
@@ -25,28 +25,16 @@
                 "PathPart": "profile"
             }
         },
-        "ProfileIdResource": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-                "RestApiId": {
-                    "Ref": "apiId"
-                },
-                "ParentId": {
-                    "Ref": "ProfileResource"
-                },
-                "PathPart": "{profileId}"
-            }
-        },
-        "ProfileIdResourceGet": {
+        "ProfileResourcePost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
                 "RestApiId": {
                     "Ref": "apiId"
                 },
                 "ResourceId": {
-                    "Ref": "ProfileIdResource"
+                    "Ref": "ProfileResource"
                 },
-                "HttpMethod": "GET",
+                "HttpMethod": "POST",
                 "AuthorizationType": "NONE",
                 "Integration": {
                     "Type": "MOCK",
@@ -79,14 +67,14 @@
                 ]
             }
         },
-        "ProfileIdResourceOptions": {
+        "ProfileResourceOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
                 "RestApiId": {
                     "Ref": "apiId"
                 },
                 "ResourceId": {
-                    "Ref": "ProfileIdResource"
+                    "Ref": "ProfileResource"
                 },
                 "HttpMethod": "OPTIONS",
                 "AuthorizationType": "NONE",
@@ -123,7 +111,7 @@
             }
         },
         "apiDeployment": {
-            "DependsOn": "ProfileIdResourceOptions",
+            "DependsOn": "ProfileResourceOptions",
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
                 "Description": "Api Gateway Rest Api Deployment Stage.",
@@ -137,10 +125,10 @@
         }
     },
     "Outputs": {
-        "ProfileIdResourceValue": {
-            "Description": "/profile/{id} Api Gateway Rest Api Methods created and deployed (2): OPTIONS, GET.",
+        "ProfileResourceValue": {
+            "Description": "/profile Api Gateway Rest Api Methods created and deployed (2): OPTIONS, POST.",
             "Value": {
-                "Ref": "ProfileIdResource"
+                "Ref": "ProfileResource"
             }
         }
     }
