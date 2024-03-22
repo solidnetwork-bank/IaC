@@ -16,6 +16,15 @@ on:
       certificate:
         description: "ACM Certificate ARN"
         required: true
+      desc:
+        description: "Distribution Description"
+        required: true
+      subdomain:
+        description: "Subdomain name (CNAME)"
+        required: true
+      origin:
+        description: "Origin endpoint (no protocol)"
+        required: true
 
 jobs:
   # This workflow contains a single job called "deploy"
@@ -44,4 +53,4 @@ jobs:
           template: ${{ github.event.inputs.template }}
           capabilities: ${{ secrets.CAPABILITIES }}
           no-fail-on-empty-changeset: "1"
-          parameter-overrides: "AcmCertificateArnParameter=${{ github.event.inputs.certificate }}"
+          parameter-overrides: "CertificateArn=${{ github.event.inputs.certificate }},DistributionDesc=${{ github.event.inputs.desc }},SubdomainName=${{ github.event.inputs.subdomain }},OriginEndpoint=${{ github.event.inputs.origin }}"

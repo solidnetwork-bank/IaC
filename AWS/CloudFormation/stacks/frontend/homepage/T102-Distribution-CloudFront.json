@@ -1,0 +1,87 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFront distribution.",
+  "Parameters": {
+    "CertificateArn": {
+      "Type": "String"
+    },
+    "DistributionDesc": {
+      "Type": "String"
+    },
+    "SubdomainName": {
+      "Type": "String"
+    },
+    "OriginEndpoint": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "BankSolidnetworkXyzDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
+            {
+              "Ref": "SubdomainName"
+            }
+          ],
+          "Comment": {
+            "Ref": "DistributionDesc"
+          },
+          "DefaultCacheBehavior": {
+            "AllowedMethods": [
+              "HEAD",
+              "GET",
+              "OPTIONS",
+              "PUT",
+              "POST",
+              "PATCH",
+              "DELETE"
+            ],
+            "Compress": true,
+            "ForwardedValues": {
+              "Cookies": {
+                "Forward": "none"
+              },
+              "QueryString": false
+            },
+            "TargetOriginId": "BankSolidnetworkXyzOrigin",
+            "ViewerProtocolPolicy": "redirect-to-https"
+          },
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "Origins": [
+            {
+              "CustomOriginConfig": {
+                "HTTPPort": 80,
+                "OriginProtocolPolicy": "http-only"
+              },
+              "DomainName": {
+                "Ref": "OriginEndpoint"
+              },
+              "Id": "BankSolidnetworkXyzOrigin"
+            }
+          ],
+          "ViewerCertificate": {
+            "AcmCertificateArn": {
+              "Ref": "CertificateArn"
+            },
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only"
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "BankSolidnetworkXyzDistributionURL": {
+      "Description": "CloudFront distribution created.",
+      "Value": {
+        "Fn::GetAtt": [
+          "BankSolidnetworkXyzDistribution",
+          "DomainName"
+        ]
+      }
+    }
+  }
+}
