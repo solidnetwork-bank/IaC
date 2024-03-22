@@ -46,15 +46,20 @@
               "QueryString": false
             },
             "TargetOriginId": "BankSolidnetworkXyzOrigin",
-            "ViewerProtocolPolicy": "redirect-to-https"
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+            "OriginRequestPolicyId": "59781a5b-3903-41f3-afcb-af62929ccde1"
           },
           "Enabled": true,
           "HttpVersion": "http2",
           "Origins": [
             {
               "CustomOriginConfig": {
-                "HTTPPort": 80,
-                "OriginProtocolPolicy": "http-only"
+                "HTTPSPort": 443,
+                "OriginProtocolPolicy": "https-only",
+                "OriginSSLProtocols": [
+                  "TLSv1.2"
+                ]
               },
               "DomainName": {
                 "Ref": "OriginEndpoint"
