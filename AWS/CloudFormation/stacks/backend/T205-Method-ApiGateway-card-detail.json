@@ -13,6 +13,18 @@
         }
     },
     "Resources": {
+        "DetailResource": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "apiId"
+                },
+                "ParentId": {
+                    "Ref": "parentId"
+                },
+                "PathPart": "detail"
+            }
+        },
         "DetailPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -20,7 +32,7 @@
                     "Ref": "apiId"
                 },
                 "ResourceId": {
-                    "Ref": "parentId"
+                    "Ref": "DetailResource"
                 },
                 "HttpMethod": "POST",
                 "AuthorizationType": "NONE",
@@ -62,7 +74,7 @@
                     "Ref": "apiId"
                 },
                 "ResourceId": {
-                    "Ref": "parentId"
+                    "Ref": "DetailResource"
                 },
                 "HttpMethod": "OPTIONS",
                 "AuthorizationType": "NONE",
@@ -113,10 +125,10 @@
         }
     },
     "Outputs": {
-        "DetailPostValue": {
+        "DetailResourceValue": {
             "Description": "/detail, Card Rest Api Root Resource Api Gateway Rest Api Methods (2): OPTIONS, POST.",
             "Value": {
-                "Ref": "DetailPost"
+                "Ref": "DetailResource"
             }
         }
     }
