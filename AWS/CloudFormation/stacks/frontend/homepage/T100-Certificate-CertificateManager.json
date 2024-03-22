@@ -1,0 +1,41 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Request an AWS Certificate Manager (ACM) certificate.",
+  "Parameters": {
+    "domainName": {
+      "Type": "String"
+    },
+    "subDomainName": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "SSLCerticate": {
+      "Type": "AWS::CertificateManager::Certificate",
+      "Properties": {
+        "DomainName": {
+          "Ref": "subDomainName"
+        },
+        "DomainValidationOptions": [
+          {
+            "DomainName": {
+              "Ref": "subDomainName"
+            },
+            "ValidationDomain": {
+              "Ref": "domainName"
+            }
+          }
+        ],
+        "ValidationMethod": "DNS"
+      }
+    }
+  },
+  "Outputs": {
+    "SSLCerticateValue": {
+      "Description": "Issued SSL certificate ARN",
+      "Value": {
+        "Ref": "SSLCerticate"
+      }
+    }
+  }
+}
