@@ -1,0 +1,90 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFront distribution origin S3.",
+  "Parameters": {
+    "CertificateArn": {
+      "Type": "String"
+    },
+    "DistributionDesc": {
+      "Type": "String"
+    },
+    "SubdomainName": {
+      "Type": "String"
+    },
+    "OriginEndpoint": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "BankSolidnetworkXyzDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
+            {
+              "Ref": "SubdomainName"
+            }
+          ],
+          "Comment": {
+            "Ref": "DistributionDesc"
+          },
+          "DefaultCacheBehavior": {
+            "AllowedMethods": [
+              "HEAD",
+              "GET",
+              "OPTIONS",
+              "PUT",
+              "POST",
+              "PATCH",
+              "DELETE"
+            ],
+            "Compress": true,
+            "ForwardedValues": {
+              "Cookies": {
+                "Forward": "none"
+              },
+              "QueryString": false
+            },
+            "TargetOriginId": "BankSolidnetworkXyzOrigin",
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+            "OriginRequestPolicyId": "59781a5b-3903-41f3-afcb-af62929ccde1"
+          },
+          "DefaultRootObject": "index.html",
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "Origins": [
+            {
+              "CustomOriginConfig": {
+                "HTTPPort": 80,
+                "OriginProtocolPolicy": "http-only"
+              },
+              "DomainName": {
+                "Ref": "OriginEndpoint"
+              },
+              "Id": "BankSolidnetworkXyzOrigin"
+            }
+          ],
+          "ViewerCertificate": {
+            "AcmCertificateArn": {
+              "Ref": "CertificateArn"
+            },
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only"
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "BankSolidnetworkXyzDistributionURL": {
+      "Description": "CloudFront distribution orgin S3 created.",
+      "Value": {
+        "Fn::GetAtt": [
+          "BankSolidnetworkXyzDistribution",
+          "DomainName"
+        ]
+      }
+    }
+  }
+}
