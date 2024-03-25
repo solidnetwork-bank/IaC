@@ -2,9 +2,11 @@
 The Solid Network Bank Infrastructure as code (IaC)
 
 ## Architecture 
-![Architecture ALB](./Readme/ALB-arch.png)
+![Architecture VPC](./Readme/API-VPC.png)
 
-![Architecture MAP](./Readme/cloud-map-arch.png)
+![Architecture VPC EC2](./Readme/API-VPC-EC2.png)
+
+![Architecture VPCLink](./Readme/API-VPCLink.png)
 
 ![Architecture s3](./Readme/Architecture-1.png)
 
