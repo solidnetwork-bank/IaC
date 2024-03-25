@@ -1,11 +1,12 @@
 # IaC
 The Solid Network Bank Infrastructure as code (IaC)
 
-## [Create IAM users](https://github.com/solidnetwork-bank/IaC/tree/main/Readme/setup.md)
-
 ## Architecture 
+![Architecture ALB](./Readme/ALB-arch.png)
 
-![Architecture diagram](./Readme/Architecture-1.png?raw=true)
+![Architecture MAP](./Readme/cloud-map-arch.png)
+
+![Architecture s3](./Readme/Architecture-1.png)
 
 ### User - Website Architecture
 
@@ -18,6 +19,8 @@ The Solid Network Bank Infrastructure as code (IaC)
 ### DevOps - Website Architecture 
 
 | DevOps | --> | GitHub | --> | AWS CLI | --> | Stack: CloudFront + AWS Certificate + S3 Bucket + Static Page |
+
+## [Create IAM users](https://github.com/solidnetwork-bank/IaC/tree/main/Readme/setup.md)
 
 ## Hosts, APIs and Microservices
 
