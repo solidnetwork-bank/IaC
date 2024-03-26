@@ -19,6 +19,14 @@
                 "VpcId": {
                     "Ref": "VpcId"
                 },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "GroupName"
+                        }
+                    }
+                ],
                 "GroupDescription": "Enable access via  22, 80, 443 ports",
                 "SecurityGroupIngress": [
                     {
