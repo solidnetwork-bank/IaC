@@ -29,15 +29,7 @@
                 "KeyName": {
                     "Ref": "InstanceName"
                 },
-                "KeyType": "rsa",
-                "Tags": [
-                    {
-                        "Key": "Name",
-                        "Value": {
-                            "Ref": "InstanceName"
-                        }
-                    }
-                ]
+                "KeyType": "rsa"
             }
         },
         "BankSolidnetworkXyzEC2Instance": {
