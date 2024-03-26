@@ -4,7 +4,11 @@ The Solid Network Bank Infrastructure as code (IaC)
 ## Architecture 
 ![Architecture VPC](./Readme/API-VPC.png)
 
-![Architecture VPC EC2](./Readme/API-VPC-EC2.png)
+### REST API Gateway to EC2
+
+Api Gateway > Method > Http Integration > url EC2
+
+- VPC > SUBNET > INTERNET GATEWAY > ROUTE TABLE > ROUTE + IGTW > SEC GROUP (22,443,80) > EC2 (SECGROUP + SUBNET)
 
 ![Architecture VPCLink](./Readme/API-VPCLink.png)
 
