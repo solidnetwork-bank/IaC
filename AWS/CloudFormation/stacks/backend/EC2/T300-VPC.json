@@ -28,9 +28,9 @@
       "Properties": {
         "Tags": [
           {
-            "Key": "vpcName",
+            "Key": "Name",
             "Value": {
-              "Ref": "AWS::StackId"
+              "Ref": "vpcName"
             }
           }
         ]
