@@ -27,30 +27,14 @@
             "Properties": {
                 "KeyFormat": "pem",
                 "KeyName": {
-                    "Fn::Join": [
-                        "",
-                        [
-                            {
-                                "Ref": "InstanceName"
-                            },
-                            "-KeyPair"
-                        ]
-                    ]
+                    "Ref": "InstanceName"
                 },
                 "KeyType": "rsa",
                 "Tags": [
                     {
                         "Key": "Name",
                         "Value": {
-                            "Fn::Join": [
-                                "",
-                                [
-                                    {
-                                        "Ref": "InstanceName"
-                                    },
-                                    "-KeyPair"
-                                ]
-                            ]
+                            "Ref": "InstanceName"
                         }
                     }
                 ]
@@ -63,7 +47,7 @@
                     "Ref": "ImageId"
                 },
                 "KeyName": {
-                    "Ref": "BankSolidnetworkXyzKeyPair"
+                    "Ref": "InstanceName"
                 },
                 "IamInstanceProfile": {
                     "Ref": "InstanceProfileId"
