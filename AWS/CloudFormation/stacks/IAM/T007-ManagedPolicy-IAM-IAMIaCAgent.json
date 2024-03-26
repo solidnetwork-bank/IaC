@@ -1,0 +1,50 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "IAM Permissions required by IaC agents: IAMIaCAgent.",
+  "Resources": {
+    "IAMIaCAgentPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "Description": "IAM Permissions required by IaC agents: IAMIaCAgent.",
+        "ManagedPolicyName": "IAMIaCAgent",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "iam:GetRole",
+                "iam:ListInstanceProfilesForRole",
+                "iam:CreateServiceLinkedRole",
+                "iam:ListRoleTags",
+                "iam:ListAttachedRolePolicies",
+                "iam:TagRole",
+                "iam:ListRoles",
+                "iam:CreateRole",
+                "iam:AttachRolePolicy",
+                "iam:ListRolePolicies",
+                "iam:GetRolePolicy",
+                "iam:AddRoleToInstanceProfile",
+                "iam:PutRolePolicy",
+                "iam:CreateInstanceProfile",
+                "iam:GetInstanceProfile",
+                "iam:TagInstanceProfile",
+                "iam:UntagInstanceProfile",
+                "iam:PassRole"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "IAMIaCAgentPolicyValue": {
+      "Description": "IAMIaCAgent Managed Policy created.",
+      "Value": {
+        "Ref": "IAMIaCAgentPolicy"
+      }
+    }
+  }
+}

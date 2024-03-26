@@ -78,6 +78,18 @@
                 ":policy/EC2IaCAgent"
               ]
             ]
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:iam::",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":policy/IAMIaCAgent"
+              ]
+            ]
           }
         ]
       }
