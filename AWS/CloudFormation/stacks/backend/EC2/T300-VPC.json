@@ -22,6 +22,30 @@
           }
         ]
       }
+    },
+    "BankSolidnetworkXyzIGW": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "vpcName",
+            "Value": {
+              "Ref": "AWS::StackId"
+            }
+          }
+        ]
+      }
+    },
+    "BankSolidnetworkXyzIGWAttachGateway": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BankSolidnetworkXyzVPC"
+        },
+        "InternetGatewayId": {
+          "Ref": "BankSolidnetworkXyzIGW"
+        }
+      }
     }
   },
   "Outputs": {
