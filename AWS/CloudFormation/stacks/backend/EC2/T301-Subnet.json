@@ -1,0 +1,42 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Launch VPC Subnet",
+    "Parameters": {
+        "VpcId": {
+            "Type": "String"
+        },
+        "SubnetName": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "BankSolidnetworkXyzSubnet": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "AvailabilityZone": {
+                    "Fn::Sub": "${AWS::Region}a"
+                },
+                "VpcId": {
+                    "Ref": "VpcId"
+                },
+                "CidrBlock": "10.0.0.0/24",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "SubnetName"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "Outputs": {
+        "BankSolidnetworkXyzValue": {
+            "Description": "VPC Subnet Launched",
+            "Value": {
+                "Ref": "BankSolidnetworkXyzSubnet"
+            }
+        }
+    }
+}
