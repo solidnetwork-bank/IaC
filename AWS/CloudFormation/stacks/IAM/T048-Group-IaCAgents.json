@@ -66,6 +66,18 @@
                 ":policy/ApiGatewayIaCAgent"
               ]
             ]
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:iam::",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":policy/EC2IaCAgent"
+              ]
+            ]
           }
         ]
       }
