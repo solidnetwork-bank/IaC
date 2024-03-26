@@ -1,0 +1,36 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Log Permissions required by IaC agents: LogIaCAgent.",
+  "Resources": {
+    "LogIaCAgentPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "Description": "Log Permissions required by IaC agents: LogIaCAgent.",
+        "ManagedPolicyName": "LogIaCAgent",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "logs:DescribeLogGroups",
+                "logs:CreateLogGroup",
+                "logs:TagLogGroup",
+                "logs:PutRetentionPolicy"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "LogIaCAgentPolicyValue": {
+      "Description": "Log Managed Policy created.",
+      "Value": {
+        "Ref": "LogIaCAgentPolicy"
+      }
+    }
+  }
+}
