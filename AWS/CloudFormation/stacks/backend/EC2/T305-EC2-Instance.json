@@ -84,14 +84,6 @@
                         }
                     }
                 ],
-                "SecurityGroupIds": [
-                    {
-                        "Ref": "SecurityGroupId"
-                    }
-                ],
-                "SubnetId": {
-                    "Ref": "SubnetId"
-                },
                 "Tags": [
                     {
                         "Key": "Name",
