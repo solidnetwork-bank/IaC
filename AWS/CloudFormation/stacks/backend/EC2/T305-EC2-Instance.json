@@ -22,18 +22,7 @@
         }
     },
     "Resources": {
-        "BankSolidnetworkXyzKeyPair": {
-            "Type": "AWS::EC2::KeyPair",
-            "Properties": {
-                "KeyFormat": "pem",
-                "KeyName": {
-                    "Ref": "InstanceName"
-                },
-                "KeyType": "rsa"
-            }
-        },
         "BankSolidnetworkXyzEC2Instance": {
-            "DependsOn": "BankSolidnetworkXyzKeyPair",
             "Type": "AWS::EC2::Instance",
             "Properties": {
                 "ImageId": {
