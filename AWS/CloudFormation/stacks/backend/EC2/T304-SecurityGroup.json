@@ -1,0 +1,57 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Launch Security Group with ingress rules: 22, 80, 443",
+    "Parameters": {
+        "VpcId": {
+            "Type": "String"
+        },
+        "GroupName": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "BankSolidnetworkXyzSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupName": {
+                    "Ref": "GroupName"
+                },
+                "VpcId": {
+                    "Ref": "VpcId"
+                },
+                "GroupDescription": "Enable access via  22, 80, 443 ports",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "CidrIp": "0.0.0.0/0",
+                        "Description": "SSH access"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "443",
+                        "ToPort": "443",
+                        "CidrIp": "0.0.0.0/0",
+                        "Description": "SSL access"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "CidrIp": "0.0.0.0/0",
+                        "Description": "Redirect access"
+                    }
+                ]
+            }
+        }
+    },
+    "Outputs": {
+        "BankSolidnetworkXyzSecurityGroupValue": {
+            "Description": "Security Group Launched",
+            "Value": {
+                "Ref": "BankSolidnetworkXyzSecurityGroup"
+            }
+        }
+    }
+}
