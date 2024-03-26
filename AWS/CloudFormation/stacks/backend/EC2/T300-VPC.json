@@ -1,16 +1,23 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Launch Yosemite VCP",
+  "Description": "Launch VCP",
+  "Parameters": {
+    "vpcName": {
+      "Type": "String"
+    }
+  },
   "Resources": {
-    "YosemiteVPC": {
+    "BankSolidnetworkXyzVPC": {
       "Type": "AWS::EC2::VPC",
       "Properties": {
         "CidrBlock": "10.0.0.0/16",
+        "EnableDnsSupport": "true",
+        "EnableDnsHostnames": "true",
         "Tags": [
           {
-            "Key": "Application",
+            "Key": "Name",
             "Value": {
-              "Ref": "AWS::StackId"
+              "Ref": "vpcName"
             }
           }
         ]
@@ -18,10 +25,10 @@
     }
   },
   "Outputs": {
-    "YosemiteVPCId": {
+    "BankSolidnetworkXyzVPCValue": {
       "Description": "VPC Launched",
       "Value": {
-        "Ref": "YosemiteVPC"
+        "Ref": "BankSolidnetworkXyzVPC"
       }
     }
   }
