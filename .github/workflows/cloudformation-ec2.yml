@@ -19,7 +19,7 @@ on:
       image_id:
         description: "AMI ID"
         required: true
-        default: "ami-080e1f13689e07408"
+        default: "ami-0a55ba1c20b74fc30"
       instance_profile_id:
         description: "IAM InstanceProfile id EC2LogRole"
         required: true
