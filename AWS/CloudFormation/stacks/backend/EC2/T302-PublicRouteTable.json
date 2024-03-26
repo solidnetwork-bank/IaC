@@ -1,0 +1,82 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Launch a Public Route Table allowing all Internet address routes. Association between Subnet and Route Table.",
+  "Parameters": {
+    "VpcId": {
+      "Type": "String"
+    },
+    "VpcName": {
+      "Type": "String"
+    },
+    "SubnetId": {
+      "Type": "String"
+    },
+    "SubnetName": {
+      "Type": "String"
+    },
+    "GatewayId": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "BankSolidnetworkXyzPublicRouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join": [
+                "",
+                [
+                  {
+                    "Ref": "VpcName"
+                  },
+                  "|",
+                  {
+                    "Ref": "SubnetName"
+                  },
+                  "|PublicRouteTable"
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "BankSolidnetworkXyzDefaultPublicRoute": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BankSolidnetworkXyzPublicRouteTable"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "GatewayId"
+        }
+      }
+    },
+    "BankSolidnetworkXyzSubnetRouteTableAssociation": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "SubnetId"
+        },
+        "RouteTableId": {
+          "Ref": "BankSolidnetworkXyzPublicRouteTable"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "BankSolidnetworkXyzPublicRouteTableValue": {
+      "Description": "Public Route Table Launched.",
+      "Value": {
+        "Ref": "BankSolidnetworkXyzPublicRouteTable"
+      }
+    }
+  }
+}
