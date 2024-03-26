@@ -41,6 +41,7 @@
             }
         },
         "BankSolidnetworkXyzEC2Instance": {
+            "DependsOn": "BankSolidnetworkXyzKeyPair",
             "Type": "AWS::EC2::Instance",
             "Properties": {
                 "ImageId": {
