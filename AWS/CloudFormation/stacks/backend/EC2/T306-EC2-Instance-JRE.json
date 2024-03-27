@@ -113,7 +113,9 @@
                             "",
                             [
                                 "#!/bin/bash -xe\n",
-                                "/usr/local/bin/cfn-init -v ",
+                                "",
+                                "yum install -y aws-cfn-bootstrap",
+                                "sudo cfn-init -v ",
                                 "         --stack ",
                                 {
                                     "Ref": "AWS::StackName"
