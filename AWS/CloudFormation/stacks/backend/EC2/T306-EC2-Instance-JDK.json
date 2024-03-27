@@ -1,0 +1,141 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Launch an EC2 Instance openjdk-21-jdk. Ubuntu AMI. CloudWatch Log Group. 8GB gp3 space.",
+    "Parameters": {
+        "InstanceName": {
+            "Type": "String"
+        },
+        "ImageId": {
+            "Type": "String"
+        },
+        "InstanceProfileId": {
+            "Type": "String"
+        },
+        "InstanceType": {
+            "Type": "String"
+        },
+        "SecurityGroupId": {
+            "Type": "String"
+        },
+        "SubnetId": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "BankSolidnetworkXyzEC2Instance": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "ImageId": {
+                    "Ref": "ImageId"
+                },
+                "KeyName": {
+                    "Ref": "InstanceName"
+                },
+                "IamInstanceProfile": {
+                    "Ref": "InstanceProfileId"
+                },
+                "AvailabilityZone": {
+                    "Fn::Sub": "${AWS::Region}a"
+                },
+                "InstanceType": {
+                    "Ref": "InstanceType"
+                },
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeType": "gp3",
+                            "VolumeSize": "8",
+                            "DeleteOnTermination": "true"
+                        }
+                    }
+                ],
+                "NetworkInterfaces": [
+                    {
+                        "AssociatePublicIpAddress": "true",
+                        "DeviceIndex": "0",
+                        "DeleteOnTermination": "true",
+                        "Description": "primary network interface",
+                        "GroupSet": [
+                            {
+                                "Ref": "SecurityGroupId"
+                            }
+                        ],
+                        "SubnetId": {
+                            "Ref": "SubnetId"
+                        }
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "InstanceName"
+                        }
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "#!/bin/bash",
+                                "sudo apt-get update",
+                                "sudo apt install openjdk-21-jdk",
+                                "wget https://github.com/solidnetwork-bank/card-service/blob/main/service-0.0.1-SNAPSHOT.jar",
+                                "nohup java -jar service-0.0.1-SNAPSHOT.jar > output.log &"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "ClodWatchLogGroup": {
+            "DependsOn": "BankSolidnetworkXyzEC2Instance",
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+                "LogGroupClass": "STANDARD",
+                "LogGroupName": {
+                    "Ref": "InstanceName"
+                },
+                "RetentionInDays": 7,
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "InstanceName"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "Outputs": {
+        "PublicDNS": {
+            "Description": "Public DNS of EC2 instance",
+            "Value": {
+                "Fn::GetAtt": [
+                    "BankSolidnetworkXyzEC2Instance",
+                    "PublicDnsName"
+                ]
+            }
+        },
+        "URL": {
+            "Description": "EC2 Instance Launched.",
+            "Value": {
+                "Fn::Join": [
+                    "",
+                    [
+                        "http://",
+                        {
+                            "Fn::GetAtt": [
+                                "BankSolidnetworkXyzEC2Instance",
+                                "PublicIp"
+                            ]
+                        }
+                    ]
+                ]
+            }
+        }
+    }
+}
