@@ -1,0 +1,46 @@
+{
+   "agent": {
+      "metrics_collection_interval": 60,
+      "debug": false,
+      "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log"
+   },
+   "metrics": {
+      "metrics_collected": {
+         "disk": {
+            "measurement": [
+               "free"
+            ],
+            "resources": [
+               "*"
+            ]
+         },
+         "mem": {
+            "measurement": [
+               "free"
+            ]
+         }
+      }
+   },
+   "logs": {
+      "logs_collected": {
+         "files": {
+            "collect_list": [
+               {
+                  "file_path": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log",
+                  "log_group_name": {
+                     "Ref": "InstanceName"
+                  },
+                  "log_stream_name": "amazon-cloudwatch-agent.log"
+               },
+               {
+                  "file_path": "/var/repo/logs",
+                  "log_group_name": {
+                     "Ref": "InstanceName"
+                  }
+               }
+            ]
+         }
+      },
+      "log_stream_name": "general.log"
+   }
+}
