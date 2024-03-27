@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Launch an EC2 JRE Instance. Ubuntu AMI. CloudWatch Log Group. 8GB gp3 space.",
+    "Description": "Launch an EC2 JRE Instance. Amazon Linux AMI. CloudWatch Log Group. 8GB gp3 space.",
     "Parameters": {
         "InstanceName": {
             "Type": "String"
@@ -80,8 +80,8 @@
                             "",
                             [
                                 "#!/bin/bash -xe\n",
-                                "sudo apt-get update --yes\n",
-                                "sudo apt install --yes openjdk-21-jre-headless\n",
+                                "sudo yum install -y amazon-cloudwatch-agent\n",
+                                "sudo yum install -y java-21-amazon-corretto\n",
                                 "wget https://github.com/solidnetwork-bank/card-service/raw/main/target/service-0.0.2-SNAPSHOT.jar\n",
                                 "nohup java -jar service-0.0.2-SNAPSHOT.jar > output.log &\n"
                             ]

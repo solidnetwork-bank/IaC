@@ -17,23 +17,22 @@ on:
         description: "Instance Name"
         required: true
       image_id:
-        description: "AMI ID"
+        description: "AMI ID (AL2023-ARM)"
         required: true
-        default: "ami-0a55ba1c20b74fc30"
+        default: "ami-0d8f91fa8ecdc3b58"
       instance_profile_id:
         description: "IAM InstanceProfile id EC2LogRole"
         required: true
       instance_type:
-        description: "Instance type"
+        description: "Instance type (0.5 GiB RAM)"
         required: true
-        default: "t4g.micro"
+        default: "t4g.nano"
       security_group_id:
         description: "Security Group Id"
         required: true
       subnet_id:
         description: "Subnet Id"
         required: true
-      
 
 jobs:
   # This workflow contains a single job called "deploy"
