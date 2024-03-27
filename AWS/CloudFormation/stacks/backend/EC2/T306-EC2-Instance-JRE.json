@@ -24,6 +24,39 @@
     "Resources": {
         "BankSolidnetworkXyzEC2Instance": {
             "Type": "AWS::EC2::Instance",
+            "Metadata": {
+                "Comment": "Install CloudWatch Agent",
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "initSetup": [
+                            "setup_aws_cloudwatch_agent"
+                        ]
+                    },
+                    "setup_aws_cloudwatch_agent": {
+                        "packages": {
+                            "yum": {
+                                "amazon-cloudwatch-agent": []
+                            }
+                        },
+                        "files": {
+                            "/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json": {
+                                "source": "https://raw.githubusercontent.com/solidnetwork-bank/IaC/main/AWS/CloudWatch/amazon-cloudwatch-agent.json",
+                                "mode": "000644",
+                                "owner": "root",
+                                "group": "root"
+                            }
+                        },
+                        "services": {
+                            "sysvinit": {
+                                "amazon-cloudwatch-agent": {
+                                    "enabled": "true",
+                                    "ensureRunning": "true"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "Properties": {
                 "ImageId": {
                     "Ref": "ImageId"
@@ -80,10 +113,23 @@
                             "",
                             [
                                 "#!/bin/bash -xe\n",
-                                "sudo yum install -y amazon-cloudwatch-agent\n",
+                                "/usr/local/bin/cfn-init -v ",
+                                "         --stack ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                "         --resource BankSolidnetworkXyzEC2Instance ",
+                                "         --configsets initSetup ",
+                                "         --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                "\n",
+                                "sudo mkdir -p /var/repo/logs\n",
                                 "sudo yum install -y java-21-amazon-corretto\n",
+                                "cd /var/repo\n",
                                 "wget https://github.com/solidnetwork-bank/card-service/raw/main/target/service-0.0.2-SNAPSHOT.jar\n",
-                                "nohup java -jar service-0.0.2-SNAPSHOT.jar > output.log &\n"
+                                "nohup java -jar service-0.0.2-SNAPSHOT.jar > /var/repo/logs/card-service.log &\n"
                             ]
                         ]
                     }
