@@ -42,7 +42,18 @@
                         },
                         "files": {
                             "/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json": {
-                                "source": "https://raw.githubusercontent.com/solidnetwork-bank/IaC/main/AWS/CloudWatch/amazon-cloudwatch-agent.json",
+                                "source": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "https://raw.githubusercontent.com/solidnetwork-bank/IaC/main/AWS/CloudWatch/amazon-cloudwatch-agent-",
+                                            {
+                                                "Ref": "InstanceName"
+                                            },
+                                            ".json"
+                                        ]
+                                    ]
+                                },
                                 "mode": "000644",
                                 "owner": "root",
                                 "group": "root"
@@ -57,7 +68,10 @@
                             }
                         },
                         "commands": {
-                            "01_make_log_dir": {
+                            "01_setup_config_file": {
+                                "command": "amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json"
+                            },
+                            "02_make_log_dir": {
                                 "command": "mkdir -p /var/repo/logs"
                             }
                         }
@@ -80,6 +94,12 @@
                                 "command": "nohup java -jar service-0.0.2-SNAPSHOT.jar > /var/repo/logs/card-service.log &"
                             }
                         }
+                    }
+                },
+                "CreationPolicy": {
+                    "ResourceSignal": {
+                        "Count": 1,
+                        "Timeout": "PT5M"
                     }
                 }
             },
@@ -154,7 +174,18 @@
                                 {
                                     "Ref": "AWS::Region"
                                 },
-                                " || error_exit 'Failed to run cfn-init'\n"                               
+                                " || error_exit 'Failed to run cfn-init'\n",
+                                "# All done so signal success\n",
+                                "/opt/aws/bin/cfn-signal -e $? --stack ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                " --resource BankSolidnetworkXyzEC2Instance ",
+                                " --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                "\n"
                             ]
                         ]
                     }
