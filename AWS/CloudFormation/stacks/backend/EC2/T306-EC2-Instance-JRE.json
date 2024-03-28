@@ -28,11 +28,13 @@
                 "Comment": "Install CloudWatch Agent",
                 "AWS::CloudFormation::Init": {
                     "configSets": {
-                        "initSetup": [
-                            "setup_aws_cloudwatch_agent"
+                        "default": [
+                            "01_setup_aws_cloudwatch_agent",
+                            "02_setup_java",
+                            "03_deploy_mock_microservice"
                         ]
                     },
-                    "setup_aws_cloudwatch_agent": {
+                    "01_setup_aws_cloudwatch_agent": {
                         "packages": {
                             "yum": {
                                 "amazon-cloudwatch-agent": []
@@ -52,6 +54,30 @@
                                     "enabled": "true",
                                     "ensureRunning": "true"
                                 }
+                            }
+                        },
+                        "commands": {
+                            "01_make_log_dir": {
+                                "command": "mkdir -p /var/repo/logs"
+                            }
+                        }
+                    },
+                    "02_setup_java": {
+                        "commands": {
+                            "01_install_jre": {
+                                "command": "yum install -y java-21-amazon-corretto"
+                            }
+                        }
+                    },
+                    "03_deploy_mock_microservice": {
+                        "commands": {
+                            "01_download_microservice": {
+                                "cwd": "/var/repo",
+                                "command": "wget https://github.com/solidnetwork-bank/card-service/raw/main/target/service-0.0.2-SNAPSHOT.jar"
+                            },
+                            "02_run_microservice": {
+                                "cwd": "/var/repo",
+                                "command": "nohup java -jar service-0.0.2-SNAPSHOT.jar > /var/repo/logs/card-service.log &"
                             }
                         }
                     }
@@ -113,25 +139,22 @@
                             "",
                             [
                                 "#!/bin/bash -xe\n",
-                                "",
+                                "# Get the latest CloudFormation package\n",
                                 "yum install -y aws-cfn-bootstrap",
-                                "sudo cfn-init -v ",
+                                " || error_exit 'Failed to install aws-cfn-bootstrap'\n",
+                                "# Start cfn-init\n",
+                                "/opt/aws/bin/cfn-init -v ",
                                 "         --stack ",
                                 {
                                     "Ref": "AWS::StackName"
                                 },
                                 "         --resource BankSolidnetworkXyzEC2Instance ",
-                                "         --configsets initSetup ",
+                                "         --configsets default ",
                                 "         --region ",
                                 {
                                     "Ref": "AWS::Region"
                                 },
-                                "\n",
-                                "sudo mkdir -p /var/repo/logs\n",
-                                "sudo yum install -y java-21-amazon-corretto\n",
-                                "cd /var/repo\n",
-                                "wget https://github.com/solidnetwork-bank/card-service/raw/main/target/service-0.0.2-SNAPSHOT.jar\n",
-                                "nohup java -jar service-0.0.2-SNAPSHOT.jar > /var/repo/logs/card-service.log &\n"
+                                " || error_exit 'Failed to run cfn-init'\n"                               
                             ]
                         ]
                     }
